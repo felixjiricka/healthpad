@@ -1,90 +1,94 @@
-<div class="page-wrapper">
-    <div class="sidebar">
-        <div class="top">
-            <div class="user">
-                <div class="image">
-                    <div class="uk-cover-container">
-                        <img
-                            src="../../assets/images/placeholder/avatar.jpg"
-                            uk-cover
-                        />
+<nb-layout>
+    <nb-sidebar>
+        <div class="content">
+            <div class="top">
+                <div class="user">
+                    <div class="image">
+                        <div class="uk-cover-container">
+                            <img
+                                src="../../assets/images/placeholder/avatar.jpg"
+                                uk-cover
+                            />
+                        </div>
+                    </div>
+
+                    <div class="text">
+                        <span class="name"> Monika Stocker </span>
+                        <span class="role"> User </span>
                     </div>
                 </div>
+            </div>
 
-                <div class="text">
-                    <span class="name"> Monika Stocker </span>
-                    <span class="role"> User </span>
-                </div>
+            <div class="middle">
+                <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+                    <li>
+                        <a
+                            [routerLink]="'dashboard'"
+                            routerLinkActive="uk-active"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="ionicon"
+                                viewBox="0 0 512 512"
+                            >
+                                <path
+                                    d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="32"
+                                />
+                                <path
+                                    d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="32"
+                                />
+                            </svg>
+                            Dashboard</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            [routerLink]="'inventory'"
+                            routerLinkActive="uk-active"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="ionicon"
+                                viewBox="0 0 512 512"
+                            >
+                                <title>Bag Remove</title>
+                                <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="32"
+                                    d="M320 320H192M80 176a16 16 0 00-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 00-16-16zM160 176v-32a96 96 0 0196-96h0a96 96 0 0196 96v32"
+                                />
+                            </svg>
+                            Artikel</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#"
+                            ><span
+                                class="uk-margin-small-right"
+                                uk-icon="icon: trash"
+                            ></span>
+                            Item</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom">
+                <img src="../../assets/logo.svg" />
             </div>
         </div>
+    </nb-sidebar>
 
-        <div class="middle">
-            <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <li>
-                    <a [routerLink]="'dashboard'" routerLinkActive="uk-active"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="ionicon"
-                            viewBox="0 0 512 512"
-                        >
-                            <path
-                                d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="32"
-                            />
-                            <path
-                                d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="32"
-                            />
-                        </svg>
-                        Dashboard</a
-                    >
-                </li>
-                <li>
-                    <a [routerLink]="'inventory'" routerLinkActive="uk-active"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="ionicon"
-                            viewBox="0 0 512 512"
-                        >
-                            <title>Bag Remove</title>
-                            <path
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="32"
-                                d="M320 320H192M80 176a16 16 0 00-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 00-16-16zM160 176v-32a96 96 0 0196-96h0a96 96 0 0196 96v32"
-                            />
-                        </svg>
-                        Artikel</a
-                    >
-                </li>
-                <li>
-                    <a href="#"
-                        ><span
-                            class="uk-margin-small-right"
-                            uk-icon="icon: trash"
-                        ></span>
-                        Item</a
-                    >
-                </li>
-            </ul>
-        </div>
-
-        <div class="bottom">
-            <img src="../../assets/logo.svg" />
-        </div>
-    </div>
-
-    <div class="content">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+    <nb-layout-column> <router-outlet></router-outlet></nb-layout-column>
+</nb-layout>

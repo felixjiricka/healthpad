@@ -1,1 +1,110 @@
-<p>inventory works!</p>
+<div class="page-header">
+    <h1>Inventar</h1>
+
+    <div class="header-action-button">
+        <button nbButton status="primary">
+            <nb-icon icon="plus-outline"></nb-icon>Produkt hinzufügen
+        </button>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="product-search">
+        <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline"></nb-icon>
+            <input
+                type="text"
+                nbInput
+                fullWidth
+                [(ngModel)]="searchValue"
+                (input)="onSearch()"
+            />
+        </nb-form-field>
+
+        <p>
+            <span>{{ filteredProducts.length }}</span> Produkte gefunden.
+        </p>
+    </div>
+
+    <div class="product-filter">
+        <form [formGroup]="filterForm">
+            <div class="product-category">
+                <label>Kategorie</label>
+
+                <div>
+                    <span
+                        formArrayName="productCategories"
+                        *ngFor="let cat of productCategories; let i = index"
+                    >
+                        <nb-checkbox [formControlName]="i">{{
+                            productCategories[i].name
+                        }}</nb-checkbox>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-inventory">
+                <label>Bestand</label>
+
+                <div formGroupName="inventory">
+                    <input
+                        type="number"
+                        nbInput
+                        placeholder="Min"
+                        formControlName="min"
+                    />
+                    <input
+                        type="number"
+                        nbInput
+                        placeholder="Max"
+                        formControlName="max"
+                    />
+                </div>
+            </div>
+
+            <div class="product-critical-inventory">
+                <div>
+                    <nb-checkbox
+                        value="0"
+                        formControlName="onlyCriticalInventory"
+                        >Nicht ausreichender Bestand</nb-checkbox
+                    >
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="product-list">
+        <div class="uk-child-width-1-5 uk-grid-medium" uk-grid>
+            <div *ngFor="let product of filteredProducts">
+                <nb-card>
+                    <div class="image">
+                        <div class="uk-cover-container">
+                            <img [src]="product.image" uk-cover />
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <div class="name">
+                            <span>
+                                {{ product.name }}
+                            </span>
+                        </div>
+
+                        <div class="inventory">
+                            <span class="header text-hint"> Bestand </span>
+
+                            <span class="value">
+                                {{ product.inventory.current }}
+                            </span>
+                        </div>
+
+                        <div class="actions">
+                            <button nbButton status="primary">Ansehen</button>
+                        </div>
+                    </div>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

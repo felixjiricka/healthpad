@@ -1,0 +1,19 @@
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+
+$nb-themes: nb-register-theme(
+    (
+        // add your variables here like:
+        color-primary-100: #bfc0ee,
+        color-primary-200: #aeafea,
+        color-primary-300: #9e9fe6,
+        color-primary-400: #8d8fe2,
+        color-primary-500: #7d7fde,
+        color-primary-600: #6c70d8,
+        color-primary-700: #5c5ed6,
+        color-primary-800: #4b4ed2,
+        color-primary-900: #3b3ece
+    ),
+    healthpad,
+    default
+);

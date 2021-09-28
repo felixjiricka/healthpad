@@ -1,0 +1,140 @@
+@use "../../../variables.scss";
+
+div.page-content {
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: repeat(2, auto);
+    grid-row-gap: 40px;
+    grid-column-gap: 50px;
+
+    div.product-search {
+        margin-top: 40px;
+        grid-column: 1 / 4;
+        grid-row: 1;
+        p {
+            font-size: 19px;
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+
+    div.product-filter {
+        display: flex;
+        flex-direction: column;
+
+        > form > div {
+            display: flex;
+            flex-direction: column;
+
+            &:not(:first-child) {
+                margin-top: 40px;
+            }
+
+            label {
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 10px;
+            }
+
+            nb-checkbox::ng-deep span.text {
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+            &.product-category {
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            &.product-inventory {
+                > div {
+                    display: flex;
+
+                    input {
+                        width: 5rem;
+
+                        &:first-child {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    div.product-list {
+        grid-column: 2 / 4;
+        grid-row: 2;
+
+        nb-card {
+            padding: 25px;
+            border-radius: 10px;
+            background-color: rgba(229, 229, 228, 0.2);
+
+            div.image {
+                height: 100%;
+                width: 100%;
+                padding-top: 100% !important;
+                position: relative;
+
+                > div.uk-cover-container {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 10px;
+                }
+            }
+
+            div.info {
+                margin-top: 25px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 12px;
+                grid-row-gap: 20px;
+                grid-template-rows: repeat(2, auto);
+
+                > div.name {
+                    grid-column: 1 / 5;
+                    grid-row: 1;
+                    span {
+                        font-size: 21px;
+                    }
+                }
+
+                > div.inventory {
+                    grid-column: 1 / 2;
+                    grid-row: 2;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    > span {
+                        &.header {
+                            font-size: 14px;
+                            font-weight: 500;
+                        }
+
+                        &.value {
+                            font-size: 15px;
+                            color: variables.$healthpad-color-text;
+                        }
+                    }
+                }
+
+                > div.actions {
+                    grid-column: 3 / 5;
+                    grid-row: 2;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

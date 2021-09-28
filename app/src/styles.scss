@@ -1,3 +1,51 @@
+@use "variables";
+@import "themes";
+
+@import "~@nebular/theme/styles/globals";
+
+@include nb-install() {
+    @include nb-theme-global();
+}
+
+.nb-theme-healthpad
+    nb-layout
+    .layout
+    .layout-container
+    .content
+    .columns
+    nb-layout-column {
+    padding: 0;
+}
+
+.nb-theme-healthpad nb-layout .layout {
+    background-color: transparent !important;
+}
+
+.nb-theme-healthpad nb-layout .layout .layout-container nb-sidebar.fixed,
+.nb-theme-healthpad
+    nb-layout
+    .layout
+    .layout-container
+    nb-sidebar
+    .main-container-fixed {
+    top: 0 !important;
+}
+
+.nb-theme-healthpad nb-sidebar .scrollable {
+    padding: 40px;
+}
+
+.nb-theme-healthpad nb-sidebar.expanded {
+    width: 20rem;
+}
+.nb-theme-healthpad nb-sidebar {
+    width: 20rem;
+}
+
+.nb-theme-healthpad nb-sidebar .main-container {
+    width: 20rem;
+}
+
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
@@ -15,4 +63,20 @@ body {
 div.page-wrapper {
     height: 100%;
     width: 100%;
+}
+
+div.page-header {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 45px;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        margin: 0;
+    }
+
+    div.header-action-button {
+        margin: auto 0;
+    }
 }

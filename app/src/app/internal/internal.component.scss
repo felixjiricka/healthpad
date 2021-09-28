@@ -1,19 +1,16 @@
-div.page-wrapper {
-    display: flex;
+@use "../../variables";
 
-    > div {
-        padding: 40px;
+nb-layout {
+    nb-sidebar {
+        background-color: rgba(217, 187, 160, 0.1);
 
-        &.sidebar {
-            width: 20%;
-            max-width: 400px;
-            height: 100%;
-            background-color: rgba(217, 187, 160, 0.1);
+        div.content {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
 
-            > div {
+            div {
                 &.top {
                     div.user {
                         display: flex;
@@ -30,12 +27,13 @@ div.page-wrapper {
                         > div.text {
                             display: flex;
                             flex-direction: column;
+                            justify-content: space-evenly;
 
                             > span {
                                 &.name {
                                     font-size: 20px;
                                     font-weight: 600;
-                                    color: #1a1816;
+                                    color: variables.$healthpad-color-text;
                                 }
 
                                 &.role {
@@ -81,10 +79,9 @@ div.page-wrapper {
                 }
             }
         }
+    }
 
-        &.content {
-            width: 100%;
-            height: 100%;
-        }
+    nb-layout-column {
+        padding: 60px !important;
     }
 }
