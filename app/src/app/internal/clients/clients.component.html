@@ -1,0 +1,71 @@
+<div class="page-header">
+    <h1>Klienten</h1>
+
+    <div class="header-action-button">
+        <button nbButton status="primary">
+            <nb-icon icon="plus-outline"></nb-icon>Klient hinzufügen
+        </button>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="client-search">
+        <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline"></nb-icon>
+            <input
+                type="text"
+                nbInput
+                fullWidth
+                [(ngModel)]="searchValue"
+                (input)="onSearch()"
+            />
+        </nb-form-field>
+
+        <p>
+            <span>{{ filteredClients.length }}</span> Klienten gefunden.
+        </p>
+    </div>
+
+    <div class="client-list">
+        <table class="uk-table uk-table-divider uk-table-justify">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink"></th>
+                    <th>Name</th>
+                    <th>Ort</th>
+                    <th>Geburtsdatum</th>
+                    <th>Nächster Termin</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of filteredClients">
+                    <td>
+                        <div class="uk-cover-container">
+                            <img
+                                src="https://placeimg.com/480/480/people"
+                                uk-cover
+                            />
+                        </div>
+                    </td>
+                    <td class="stacked">
+                        <span
+                            >{{ client.name.first }} {{ client.name.sur }}</span
+                        >
+                        <span class="text-hint"> #{{ client.id }} </span>
+                    </td>
+                    <td>
+                        <span>{{ client.adress.city }}</span>
+                    </td>
+                    <td>
+                        <span>{{
+                            client.birthdate | date: "dd MMMM, yyyy"
+                        }}</span>
+                    </td>
+                    <td>-</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

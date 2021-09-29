@@ -13,4 +13,6 @@ export class Product extends BaseModel {
         current: number;
         critical: number;
     };
+
+    price?: number;
 }

@@ -1,0 +1,58 @@
+@use "../../../variables.scss";
+
+div.page-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-row-gap: 40px;
+    grid-column-gap: 50px;
+
+    div.client-search {
+        margin-top: 40px;
+        grid-column: 1 / 4;
+        grid-row: 1;
+        p {
+            font-size: 19px;
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+
+    div.client-filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.client-list {
+        table {
+            tbody {
+                tr {
+                    td:first-child {
+                        div.uk-cover-container {
+                            width: 42px;
+                            height: 42px;
+                            border-radius: 10px;
+                        }
+                    }
+
+                    td {
+                        &.stacked {
+                            display: flex;
+                            flex-direction: column;
+
+                            span + span {
+                                margin-top: 5px;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+
+                    span {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

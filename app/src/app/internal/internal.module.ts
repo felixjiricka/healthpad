@@ -16,9 +16,10 @@ import {
     NbSidebarModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientsComponent } from './clients/clients.component';
 
 @NgModule({
-    declarations: [InternalComponent, DashboardComponent, InventoryComponent],
+    declarations: [InternalComponent, DashboardComponent, InventoryComponent, ClientsComponent],
     imports: [
         CommonModule,
         InternalRoutingModule,
