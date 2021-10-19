@@ -16,7 +16,7 @@ div.wrapper {
 
             > div {
                 &:not(:first-child) {
-                    margin-top: 20px;
+                    margin-top: 30px;
                 }
             }
         }
@@ -86,6 +86,10 @@ div.custom-calendar-header {
 }
 
 // fullcalendar
+
+full-calendar {
+    height: 100%;
+}
 
 full-calendar::ng-deep .fc-timegrid .fc-scrollgrid.fc-scrollgrid-liquid {
     border: none;
