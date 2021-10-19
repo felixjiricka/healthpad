@@ -82,6 +82,10 @@ nb-layout {
     }
 
     nb-layout-column {
-        padding: 60px !important;
+        padding: 45px !important;
+
+        &.content {
+            background-color: #fcfcfc;
+        }
     }
 }

@@ -6,7 +6,10 @@ import { InternalComponent } from './internal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import {
+    NbButtonGroupModule,
     NbButtonModule,
+    NbCalendarModule,
+    NbCalendarRangeModule,
     NbCardModule,
     NbCheckboxModule,
     NbFormFieldModule,
@@ -17,13 +20,32 @@ import {
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientsComponent } from './clients/clients.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+
+FullCalendarModule.registerPlugins([
+    // register FullCalendar plugins
+    dayGridPlugin,
+    timeGridPlugin,
+    interactionPlugin,
+]);
 
 @NgModule({
-    declarations: [InternalComponent, DashboardComponent, InventoryComponent, ClientsComponent],
+    declarations: [
+        InternalComponent,
+        DashboardComponent,
+        InventoryComponent,
+        ClientsComponent,
+        CalendarComponent,
+    ],
     imports: [
         CommonModule,
         InternalRoutingModule,
         NbIconModule,
+        NbButtonGroupModule,
         NbButtonModule,
         NbLayoutModule,
         NbSidebarModule,
@@ -31,8 +53,11 @@ import { ClientsComponent } from './clients/clients.component';
         NbInputModule,
         NbFormFieldModule,
         NbCheckboxModule,
+        NbCalendarModule,
+        NbCalendarRangeModule,
         FormsModule,
         ReactiveFormsModule,
+        FullCalendarModule,
     ],
 })
 export class InternalModule {}

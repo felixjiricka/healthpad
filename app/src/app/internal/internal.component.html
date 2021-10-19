@@ -38,6 +38,15 @@
                     </li>
                     <li>
                         <a
+                            [routerLink]="'calendar'"
+                            routerLinkActive="uk-active"
+                        >
+                            <nb-icon icon="calendar-outline"></nb-icon>
+                            Kalender
+                        </a>
+                    </li>
+                    <li>
+                        <a
                             [routerLink]="'inventory'"
                             routerLinkActive="uk-active"
                             ><nb-icon icon="shopping-bag-outline"></nb-icon>
@@ -53,5 +62,7 @@
         </div>
     </nb-sidebar>
 
-    <nb-layout-column> <router-outlet></router-outlet></nb-layout-column>
+    <nb-layout-column class="content"
+        ><router-outlet></router-outlet
+    ></nb-layout-column>
 </nb-layout>

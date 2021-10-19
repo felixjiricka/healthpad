@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
@@ -11,6 +11,9 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import localeDeAt from '@angular/common/locales/de-at';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeDeAt);
 
 @NgModule({
     declarations: [AppComponent],
@@ -25,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         NbLayoutModule,
         NbSidebarModule.forRoot(),
     ],
-    providers: [],
+    providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
