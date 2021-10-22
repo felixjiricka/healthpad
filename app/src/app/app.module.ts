@@ -22,6 +22,7 @@ import {
     NbPasswordAuthStrategy,
 } from '@nebular/auth';
 import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
+import { AuthGuard } from './guards/auth-guard.service';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -50,6 +51,7 @@ registerLocaleData(localeDeAt);
     providers: [
         { provide: LOCALE_ID, useValue: 'de-AT' },
         NbFirebasePasswordStrategy,
+        AuthGuard,
     ],
     bootstrap: [AppComponent],
 })
