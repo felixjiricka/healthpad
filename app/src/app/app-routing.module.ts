@@ -19,6 +19,12 @@ const routes: Routes = [
     },
     {
         path: 'auth',
+        loadChildren: () =>
+            import('./public/auth/auth.module').then((m) => m.NgxAuthModule),
+    },
+    /*
+    {
+        path: 'auth',
         component: NbAuthComponent,
         children: [
             {
@@ -47,6 +53,7 @@ const routes: Routes = [
             },
         ],
     },
+    */
 ];
 
 @NgModule({
