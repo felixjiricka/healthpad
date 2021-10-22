@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { NbAuthService } from '@nebular/auth';
+import { Router } from '@angular/router';
+import { NbAuthResult, NbAuthService } from '@nebular/auth';
 import { first } from 'rxjs/operators';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class AuthService {
 
     constructor(
         private afAuth: AngularFireAuth,
-        private nbAuth: NbAuthService
+        private nbAuth: NbAuthService,
+        private router: Router
     ) {
         this.afAuth.authState.subscribe((user) => {
             if (user) {
@@ -24,6 +26,17 @@ export class AuthService {
     }
 
     SignOut() {
-        this.nbAuth.logout('email');
+        this.nbAuth
+            .logout('email')
+            .toPromise()
+            .then((data: NbAuthResult) => {
+                console.log(data);
+
+                this.userData = null;
+                this.router.navigateByUrl('/auth/login');
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }
 }
