@@ -13,6 +13,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import localeDeAt from '@angular/common/locales/de-at';
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import {
+    NbAuthModule,
+    NbAuthService,
+    NbPasswordAuthStrategy,
+} from '@nebular/auth';
+import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -27,8 +36,21 @@ registerLocaleData(localeDeAt);
         NbThemeModule.forRoot({ name: 'healthpad' }),
         NbLayoutModule,
         NbSidebarModule.forRoot(),
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        NbAuthModule.forRoot({
+            strategies: [
+                NbFirebasePasswordStrategy.setup({
+                    name: 'email',
+                }),
+            ],
+            forms: {},
+        }),
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'de-AT' }],
+    providers: [
+        { provide: LOCALE_ID, useValue: 'de-AT' },
+        NbFirebasePasswordStrategy,
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

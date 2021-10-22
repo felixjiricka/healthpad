@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "healthpad-5b42b": {
+      "hosting": {
+        "Healthpad": [
+          "healthpad-5b42b"
+        ]
+      }
+    }
+  }
+}
