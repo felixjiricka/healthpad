@@ -92,6 +92,9 @@ export class InventoryComponent implements OnInit {
                 current: 10,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 2,
@@ -103,6 +106,9 @@ export class InventoryComponent implements OnInit {
                 current: 8,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 3,
@@ -114,6 +120,9 @@ export class InventoryComponent implements OnInit {
                 current: 10,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 4,
@@ -125,6 +134,9 @@ export class InventoryComponent implements OnInit {
                 current: 16,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 5,
@@ -136,6 +148,9 @@ export class InventoryComponent implements OnInit {
                 current: 3,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 6,
@@ -147,6 +162,9 @@ export class InventoryComponent implements OnInit {
                 current: 4,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 7,
@@ -158,6 +176,9 @@ export class InventoryComponent implements OnInit {
                 current: 21,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
         {
             id: 8,
@@ -169,6 +190,9 @@ export class InventoryComponent implements OnInit {
                 current: 1,
                 critical: 2,
             },
+            ean: 1234234,
+            brand: 'Marke',
+            manufacturer: 'Hersteller',
         },
     ];
 

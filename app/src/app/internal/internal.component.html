@@ -13,7 +13,10 @@
                     </div>
 
                     <div class="text">
-                        <span class="name"> Monika Stocker </span>
+                        <span class="name">
+                            {{ state.user?.firstName }}
+                            {{ state.user?.lastName }}
+                        </span>
                         <span class="actions" (click)="handleSignOut()">
                             Abmelden
                         </span>

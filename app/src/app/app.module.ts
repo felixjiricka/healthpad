@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {
     NbAuthModule,
     NbAuthService,
@@ -23,6 +24,7 @@ import {
 } from '@nebular/auth';
 import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 import { AuthGuard } from './guards/auth-guard.service';
+import { State } from './models/state';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -39,6 +41,7 @@ registerLocaleData(localeDeAt);
         NbSidebarModule.forRoot(),
         HttpClientModule,
         AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
         NbAuthModule.forRoot({
             strategies: [
                 NbFirebasePasswordStrategy.setup({
@@ -52,6 +55,7 @@ registerLocaleData(localeDeAt);
         { provide: LOCALE_ID, useValue: 'de-AT' },
         NbFirebasePasswordStrategy,
         AuthGuard,
+        State,
     ],
     bootstrap: [AppComponent],
 })
