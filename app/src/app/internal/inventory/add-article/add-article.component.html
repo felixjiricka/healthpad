@@ -1,0 +1,362 @@
+<div class="page-header">
+    <h1>Artikel hinzufügen</h1>
+
+    <div class="header-action-button"></div>
+</div>
+
+<div class="page-content">
+    <div class="uk-grid-large" uk-grid [formGroup]="form">
+        <div class="uk-width-2-3 uk-form-stacked">
+            <div class="uk-margin">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text"
+                        >Produktbezeichnung</label
+                    >
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="
+                                form.controls.name.dirty
+                                    ? form.controls.name.invalid
+                                        ? 'danger'
+                                        : 'basic'
+                                    : 'basic'
+                            "
+                            placeholder="Default"
+                            formControlName="name"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text"
+                        >Marke</label
+                    >
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="
+                                form.controls.brand.dirty
+                                    ? form.controls.brand.invalid
+                                        ? 'danger'
+                                        : 'basic'
+                                    : 'basic'
+                            "
+                            placeholder="Default"
+                            formControlName="brand"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text"
+                        >Hersteller</label
+                    >
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="
+                                form.controls.manufacturer.dirty
+                                    ? form.controls.manufacturer.invalid
+                                        ? 'danger'
+                                        : 'basic'
+                                    : 'basic'
+                            "
+                            placeholder="Default"
+                            formControlName="manufacturer"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text"
+                        >EAN</label
+                    >
+                    <div class="uk-form-controls">
+                        <input
+                            type="number"
+                            nbInput
+                            fullWidth
+                            [status]="
+                                form.controls.ean.dirty
+                                    ? form.controls.ean.invalid
+                                        ? 'danger'
+                                        : 'basic'
+                                    : 'basic'
+                            "
+                            placeholder="Default"
+                            formControlName="ean"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text"
+                        >Produktbeschreibung</label
+                    >
+                    <div class="uk-form-controls">
+                        <textarea
+                            nbInput
+                            fullWidth
+                            placeholder="Text..."
+                            rows="4"
+                            [status]="
+                                form.controls.description.dirty
+                                    ? form.controls.description.invalid
+                                        ? 'danger'
+                                        : 'basic'
+                                    : 'basic'
+                            "
+                            formControlName="description"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin-medium">
+                <div uk-grid>
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label" for="form-stacked-text"
+                            >Kategorie</label
+                        >
+                        <div class="uk-form-controls">
+                            <nb-select
+                                placeholder="Select Showcase"
+                                fullWidth
+                                [status]="
+                                    form.controls.category.dirty
+                                        ? form.controls.category.invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                formControlName="category"
+                            >
+                                <nb-option value="0">Option 0</nb-option>
+                                <nb-option value="1">Option 1</nb-option>
+                                <nb-option value="2">Option 2</nb-option>
+                                <nb-option value="3">Option 3</nb-option>
+                                <nb-option value="4">Option 4</nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label">Produktlink</label>
+                        <div class="uk-form-controls">
+                            <input
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [status]="
+                                    form.controls.ean.dirty
+                                        ? form.controls.ean.invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                placeholder="Default"
+                                formControlName="url"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium">
+                <div class="uk-margin" uk-grid formGroupName="inventory">
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label" for="form-stacked-text"
+                            >Aktueller Bestand</label
+                        >
+                        <div class="uk-form-controls">
+                            <input
+                                type="number"
+                                nbInput
+                                fullWidth
+                                [status]="
+                                    form.get('inventory.current')!.dirty
+                                        ? form.get('inventory.current')!.invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                placeholder="Default"
+                                min="0"
+                                formControlName="current"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label" for="form-stacked-text"
+                            >Kritischer Bestand</label
+                        >
+                        <div class="uk-form-controls">
+                            <input
+                                type="number"
+                                nbInput
+                                fullWidth
+                                [status]="
+                                    form.get('inventory.critical')!.dirty
+                                        ? form.get('inventory.critical')!
+                                              .invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                placeholder="Default"
+                                min="0"
+                                formControlName="critical"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-margin" uk-grid formGroupName="finance">
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label" for="form-stacked-text"
+                            >Einkaufspreis</label
+                        >
+                        <div class="uk-form-controls">
+                            <input
+                                currencyMask
+                                [options]="{
+                                    prefix: '€ ',
+                                    decimal: ',',
+                                    align: 'left'
+                                }"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [status]="
+                                    form.get('finance.buy')!.dirty
+                                        ? form.get('finance.buy')!.invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                placeholder="3,99"
+                                min="0"
+                                formControlName="buy"
+                                step="0.01"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2">
+                        <label class="uk-form-label" for="form-stacked-text"
+                            >Verkaufspreis</label
+                        >
+                        <div class="uk-form-controls">
+                            <input
+                                currencyMask
+                                [options]="{
+                                    prefix: '€ ',
+                                    decimal: ',',
+                                    align: 'left'
+                                }"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [status]="
+                                    form.get('finance.sell')!.dirty
+                                        ? form.get('finance.sell')!.invalid
+                                            ? 'danger'
+                                            : 'basic'
+                                        : 'basic'
+                                "
+                                placeholder="4,99"
+                                min="0"
+                                formControlName="sell"
+                                step="0.01"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium">
+                <div class="uk-margin">
+                    <button nbButton status="primary" (click)="submit()">
+                        Speichern
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-width-1-3">
+            <div class="uk-margin">
+                <div class="uk-margin">
+                    <div class="uk-form-controls">
+                        <div uk-form-custom>
+                            <input
+                                type="file"
+                                (change)="updatePreview($event)"
+                            />
+                            <div class="image-preview" tabindex="-1">
+                                <div>
+                                    <img
+                                        *ngIf="tempBase64.length > 0"
+                                        [src]="tempBase64"
+                                    />
+
+                                    <div class="watermark">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="
+                                                icon
+                                                icon-tabler
+                                                icon-tabler-photo
+                                            "
+                                            width="44"
+                                            height="44"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="#2c3e50"
+                                            fill="none"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                stroke="none"
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                            />
+                                            <line
+                                                x1="15"
+                                                y1="8"
+                                                x2="15.01"
+                                                y2="8"
+                                            />
+                                            <rect
+                                                x="4"
+                                                y="4"
+                                                width="16"
+                                                height="16"
+                                                rx="3"
+                                            />
+                                            <path
+                                                d="M4 15l4 -4a3 5 0 0 1 3 0l5 5"
+                                            />
+                                            <path
+                                                d="M14 14l1 -1a3 5 0 0 1 3 0l2 2"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

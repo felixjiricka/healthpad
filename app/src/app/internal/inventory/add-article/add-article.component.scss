@@ -1,0 +1,57 @@
+div.page-content {
+    max-width: 1200px;
+    > div.uk-grid {
+        margin-top: 40px;
+
+        textarea {
+            resize: none;
+        }
+
+        div.uk-form-controls {
+            > div {
+                width: 100%;
+
+                > div.image-preview {
+                    width: 100%;
+                    padding-top: 100%;
+                    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='25' ry='25' stroke='black' stroke-width='4' stroke-dasharray='2%2c 20' stroke-dashoffset='10' stroke-linecap='square'/%3e%3c/svg%3e");
+                    border-radius: 25px;
+                    position: relative;
+
+                    > div {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        padding: 10px;
+                        img {
+                            position: relative;
+                            border-radius: 25px;
+                            height: 100%;
+                            width: 100%;
+                            z-index: 1;
+                            background-color: white;
+                        }
+
+                        div.watermark {
+                            position: absolute;
+                            display: flex;
+                            height: 100%;
+                            width: 100%;
+                            top: 0;
+                            left: 0;
+
+                            svg {
+                                transition: 0.25s ease-out;
+                                width: 80px;
+                                margin: auto;
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

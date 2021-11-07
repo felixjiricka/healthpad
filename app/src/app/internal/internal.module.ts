@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 
 import { InternalRoutingModule } from './internal-routing.module';
 import { InternalComponent } from './internal.component';
@@ -16,6 +16,7 @@ import {
     NbIconModule,
     NbInputModule,
     NbLayoutModule,
+    NbSelectModule,
     NbSidebarModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +25,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { AddArticleComponent } from './inventory/add-article/add-article.component'; // a plugin!
+import { NgxCurrencyModule } from 'ngx-currency';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -40,6 +43,7 @@ FullCalendarModule.registerPlugins([
         InventoryComponent,
         ClientsComponent,
         CalendarComponent,
+        AddArticleComponent,
     ],
     imports: [
         CommonModule,
@@ -58,6 +62,10 @@ FullCalendarModule.registerPlugins([
         FormsModule,
         ReactiveFormsModule,
         FullCalendarModule,
+        NbSelectModule,
+        ReactiveFormsModule,
+        NgxCurrencyModule,
     ],
+    providers: [],
 })
 export class InternalModule {}

@@ -1,7 +1,7 @@
 import { BaseModel } from './base';
 
 export class Product extends BaseModel {
-    id!: number;
+    id!: string;
     name!: string;
     brand!: string;
     manufacturer!: string;
@@ -18,5 +18,8 @@ export class Product extends BaseModel {
         critical: number;
     };
 
-    price?: number;
+    finance!: {
+        buy: number;
+        sell: number;
+    };
 }

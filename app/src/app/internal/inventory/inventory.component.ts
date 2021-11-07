@@ -2,6 +2,7 @@ import { ProductCategory } from './../../models/productCategory';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
+import { State } from 'src/app/models/state';
 
 @Component({
     selector: 'app-inventory',
@@ -10,7 +11,7 @@ import { Product } from 'src/app/models/product';
 })
 export class InventoryComponent implements OnInit {
     filterForm!: FormGroup;
-    constructor() {}
+    constructor(private state: State) {}
 
     ngOnInit(): void {
         this.filterForm = new FormGroup({
@@ -41,7 +42,7 @@ export class InventoryComponent implements OnInit {
             console.log(appliedFilters);
 
             this.onSearch();
-            this.filteredProducts = this.products.filter((prod) => {
+            this.filteredProducts = this.state.inventory.filter((prod) => {
                 if (
                     appliedFilters.onlyCriticalInventory &&
                     prod.inventory.current > prod.inventory.critical
@@ -81,127 +82,12 @@ export class InventoryComponent implements OnInit {
         { id: 3, name: 'Sonstiges' },
     ];
 
-    products: Product[] = [
-        {
-            id: 1,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 10,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 2,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 8,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 3,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 10,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 4,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 16,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 5,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 3,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 6,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 4,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 7,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 21,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-        {
-            id: 8,
-            name: 'Schüssler Salze Nummer 1',
-            description: '',
-            url: '',
-            image: 'https://cdn.shop-apotheke.at/images/420x0/adler-schuessler-salze-nr-7-magnesium-phosphoricum-d6-tabletten-A2262276-p10.webp',
-            inventory: {
-                current: 1,
-                critical: 2,
-            },
-            ean: 1234234,
-            brand: 'Marke',
-            manufacturer: 'Hersteller',
-        },
-    ];
-
-    filteredProducts: Product[] = this.products;
+    filteredProducts: Product[] = this.state.inventory;
 
     searchValue: string = '';
 
     onSearch() {
-        this.filteredProducts = this.products.filter((prod) => {
+        this.filteredProducts = this.state.inventory.filter((prod: Product) => {
             return prod.name
                 .toLowerCase()
                 .startsWith(this.searchValue.toLowerCase());

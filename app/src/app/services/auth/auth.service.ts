@@ -6,6 +6,7 @@ import { NbAuthResult, NbAuthService } from '@nebular/auth';
 import { first } from 'rxjs/operators';
 import { FirestoreService } from '../firestore/firestore.service';
 import { State } from 'src/app/models/state';
+import { Product } from 'src/app/models/product';
 
 @Injectable({
     providedIn: 'root',
@@ -24,6 +25,15 @@ export class AuthService {
                     .getUserData(user.uid)
                     .then((userData: User) => {
                         this.state.user = userData;
+
+                        this.firestore
+                            .getProducts()
+                            .then((inventory: Product[]) => {
+                                this.state.inventory = inventory;
+                            })
+                            .catch((error) => {
+                                console.error('No user data stored');
+                            });
                     })
                     .catch((error) => {
                         console.error('No user data stored');

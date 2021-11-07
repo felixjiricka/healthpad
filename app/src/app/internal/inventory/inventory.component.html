@@ -2,7 +2,7 @@
     <h1>Inventar</h1>
 
     <div class="header-action-button">
-        <button nbButton status="primary">
+        <button nbButton status="primary" routerLink="new">
             <nb-icon icon="plus-outline"></nb-icon>Produkt hinzufügen
         </button>
     </div>
@@ -75,7 +75,10 @@
     </div>
 
     <div class="product-list">
-        <div class="uk-child-width-1-5 uk-grid-medium" uk-grid>
+        <div
+            class="uk-child-width-1-5@xl uk-child-width-1-4 uk-grid-medium"
+            uk-grid
+        >
             <div *ngFor="let product of filteredProducts">
                 <nb-card>
                     <div class="image">
