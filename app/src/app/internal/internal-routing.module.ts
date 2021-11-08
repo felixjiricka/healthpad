@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InternalComponent } from './internal.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { AddProductComponent } from './inventory/add-product/add-product.component';
+import { ProductFormComponent } from './inventory/product-form/product-form.component';
 
 const routes: Routes = [
     {
@@ -27,8 +27,18 @@ const routes: Routes = [
             },
             {
                 path: 'inventory/new',
-                component: AddProductComponent,
+                component: ProductFormComponent,
             },
+            /*
+            {
+                path: 'inventory/:id',
+                component: DetailedProductComponent,
+            },
+            {
+                path: 'inventory/:id/edit',
+                component: ProductFormComponent,
+            },
+            */
             {
                 path: 'calendar',
                 component: CalendarComponent,

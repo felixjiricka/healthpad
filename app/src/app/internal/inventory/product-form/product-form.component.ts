@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { State } from 'src/app/models/state';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { Observable, of } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { first, map, startWith } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-add-product',
-    templateUrl: './add-product.component.html',
-    styleUrls: ['./add-product.component.scss'],
+    selector: 'app-product-form',
+    templateUrl: './product-form.component.html',
+    styleUrls: ['./product-form.component.scss'],
 })
-export class AddProductComponent implements OnInit {
+export class ProductFormComponent implements OnInit {
     form!: FormGroup;
     tempBase64: any = null;
 
@@ -30,7 +30,8 @@ export class AddProductComponent implements OnInit {
         private fb: FormBuilder,
         private firestoreService: FirestoreService,
         private router: Router,
-        private state: State
+        private state: State,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -53,35 +54,47 @@ export class AddProductComponent implements OnInit {
         });
 
         this.autocompleteData.brand = [
-            ...new Set(
-                this.state.inventory.map((el) => el.brand)
-            ),
+            ...new Set(this.state.inventory.map((el) => el.brand)),
         ];
         this.autocompleteData.manufacturer = [
-            ...new Set(
-                this.state.inventory.map((el) => el.manufacturer)
-            ),
+            ...new Set(this.state.inventory.map((el) => el.manufacturer)),
         ];
 
         this.filteredBrandValues = of(this.autocompleteData.brand);
-        this.filteredManufacturerValues = of(this.autocompleteData.manufacturer);
-
+        this.filteredManufacturerValues = of(
+            this.autocompleteData.manufacturer
+        );
 
         this.filteredBrandValues = this.form.get('brand')!.valueChanges.pipe(
             startWith(''),
-            map((filterString) => this.filter(filterString, this.autocompleteData.brand))
+            map((filterString) =>
+                this.filter(filterString, this.autocompleteData.brand)
+            )
         );
 
-        this.filteredManufacturerValues = this.form.get('manufacturer')!.valueChanges.pipe(
-            startWith(''),
-            map((filterString) => this.filter(filterString, this.autocompleteData.manufacturer))
-        );
+        this.filteredManufacturerValues = this.form
+            .get('manufacturer')!
+            .valueChanges.pipe(
+                startWith(''),
+                map((filterString) =>
+                    this.filter(
+                        filterString,
+                        this.autocompleteData.manufacturer
+                    )
+                )
+            );
+
+        this.route.params.pipe(first()).subscribe((params) => {
+            console.log(params);
+        });
     }
 
     private filter(value: string, options: string[]): string[] {
         const filterValue = value.toLowerCase();
-        return options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
-      }
+        return options.filter((optionValue) =>
+            optionValue.toLowerCase().includes(filterValue)
+        );
+    }
 
     updatePreview(event: any) {
         const file = event.target.files[0];

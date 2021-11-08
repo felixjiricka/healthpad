@@ -27,8 +27,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { AddProductComponent } from './inventory/add-product/add-product.component'; // a plugin!
 import { NgxCurrencyModule } from 'ngx-currency';
+import { ProductFormComponent } from './inventory/product-form/product-form.component';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -44,7 +44,7 @@ FullCalendarModule.registerPlugins([
         InventoryComponent,
         ClientsComponent,
         CalendarComponent,
-        AddProductComponent,
+        ProductFormComponent,
     ],
     imports: [
         CommonModule,
