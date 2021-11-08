@@ -1,6 +1,6 @@
 import { ProductCategory } from './../../models/productCategory';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
 import { State } from 'src/app/models/state';
 
@@ -11,11 +11,20 @@ import { State } from 'src/app/models/state';
 })
 export class InventoryComponent implements OnInit {
     filterForm!: FormGroup;
-    constructor(private state: State) {}
+    constructor(private state: State, private fb: FormBuilder) {}
 
     ngOnInit(): void {
-        this.filterForm = new FormGroup({
-            productCategories: new FormArray([]),
+        // set brands
+        console.log(this.state.inventory)
+        this.productBrands = [
+            ...new Set(this.state.inventory.map((el) => el.brand)),
+        ];
+
+        this.filterForm = this.fb.group({
+            productCategories: this.fb.array(
+                this.productCategories.map((el) => true)
+            ),
+            productBrands: this.fb.array(this.productBrands.map((el) => el)),
             inventory: new FormGroup({
                 min: new FormControl(),
                 max: new FormControl(),
@@ -32,6 +41,7 @@ export class InventoryComponent implements OnInit {
         // filter all products
         this.filterForm.valueChanges.subscribe((val) => {
             let appliedFilters = val;
+
             appliedFilters.productCategories =
                 this.filterForm.value.productCategories
                     .map((checked: any, i: any) =>
@@ -39,13 +49,21 @@ export class InventoryComponent implements OnInit {
                     )
                     .filter((v: any) => v !== null);
 
+            appliedFilters.productBrands =
+                this.filterForm.value.productBrands
+                    .map((checked: any, i: any) =>
+                        checked ? this.productBrands[i] : null
+                    )
+                    .filter((v: any) => v !== null);
+
             console.log(appliedFilters);
 
             this.onSearch();
+
             this.filteredProducts = this.state.inventory.filter((prod) => {
                 if (
                     appliedFilters.onlyCriticalInventory &&
-                    prod.inventory.current > prod.inventory.critical
+                    prod.inventory.current >= prod.inventory.critical
                 ) {
                     return false;
                 }
@@ -53,6 +71,13 @@ export class InventoryComponent implements OnInit {
                 if (
                     appliedFilters.productCategories.length > 0 &&
                     !appliedFilters.productCategories.includes(prod.category)
+                ) {
+                    return false;
+                }
+
+                if (
+                    appliedFilters.productBrands.length > 0 &&
+                    !appliedFilters.productBrands.includes(prod.brand)
                 ) {
                     return false;
                 }
@@ -81,6 +106,8 @@ export class InventoryComponent implements OnInit {
         { id: 2, name: 'Bachblüten' },
         { id: 3, name: 'Sonstiges' },
     ];
+
+    productBrands!: string[];
 
     filteredProducts: Product[] = this.state.inventory;
 

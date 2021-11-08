@@ -43,6 +43,21 @@
                 </div>
             </div>
 
+            <div class="product-brand">
+                <label>Marke</label>
+
+                <div>
+                    <span
+                        formArrayName="productBrands"
+                        *ngFor="let cat of productBrands; let i = index"
+                    >
+                        <nb-checkbox [formControlName]="i">{{
+                            productBrands[i]
+                        }}</nb-checkbox>
+                    </span>
+                </div>
+            </div>
+
             <div class="product-inventory">
                 <label>Bestand</label>
 
