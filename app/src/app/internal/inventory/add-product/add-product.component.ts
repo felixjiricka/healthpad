@@ -7,11 +7,11 @@ import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-add-article',
-    templateUrl: './add-article.component.html',
-    styleUrls: ['./add-article.component.scss'],
+    selector: 'app-add-product',
+    templateUrl: './add-product.component.html',
+    styleUrls: ['./add-product.component.scss'],
 })
-export class AddArticleComponent implements OnInit {
+export class AddProductComponent implements OnInit {
     form!: FormGroup;
     tempBase64: any = null;
 
