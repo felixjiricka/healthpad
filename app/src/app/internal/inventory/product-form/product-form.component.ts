@@ -120,4 +120,8 @@ export class ProductFormComponent implements OnInit {
                 });
         }
     }
+
+    cancelAction() {
+        this.router.navigate(['/inventory']);
+    }
 }

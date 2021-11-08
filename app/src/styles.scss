@@ -61,6 +61,7 @@ body {
     font-family: "Cabin", sans-serif !important;
 }
 
+
 div.page-wrapper {
     height: 100%;
     width: 100%;
@@ -80,4 +81,8 @@ div.page-header {
     div.header-action-button {
         margin: auto 0;
     }
+}
+
+nb-sidebar div.page-header h1 {
+    font-size: 28px !important;
 }

@@ -138,3 +138,11 @@ div.page-content {
         }
     }
 }
+
+nb-sidebar.form-bar.expanded, nb-sidebar.form-bar::ng-deep .main-container-fixed {
+    width: 37.5vw;
+}
+
+nb-sidebar.form-bar.expanded::ng-deep .main-container-fixed {
+
+}

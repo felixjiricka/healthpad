@@ -1,17 +1,31 @@
 import { ProductCategory } from './../../models/productCategory';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
 import { State } from 'src/app/models/state';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { NbSidebarComponent, NbSidebarService } from '@nebular/theme';
 
 @Component({
     selector: 'app-inventory',
     templateUrl: './inventory.component.html',
     styleUrls: ['./inventory.component.scss'],
 })
-export class InventoryComponent implements OnInit {
+export class InventoryComponent implements OnInit, AfterViewInit {
+    @ViewChild(NbSidebarComponent, {static: false}) sidebar!: NbSidebarComponent;
     filterForm!: FormGroup;
-    constructor(private state: State, private fb: FormBuilder) {}
+    constructor(private state: State, private fb: FormBuilder, private route: ActivatedRoute) {}
+
+    ngAfterViewInit() {
+        this.route.url.subscribe(params => {
+            console.log(params);
+            if(params[1] && params[1].path == 'new') {
+                this.sidebar.toggle(false);
+            } else {
+                this.sidebar.collapse();
+            }
+        })
+    }
 
     ngOnInit(): void {
         // set brands
@@ -119,5 +133,9 @@ export class InventoryComponent implements OnInit {
                 .toLowerCase()
                 .startsWith(this.searchValue.toLowerCase());
         });
+    }
+
+    collapseSidebar() {
+        this.sidebar.collapse();
     }
 }
