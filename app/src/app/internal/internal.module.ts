@@ -6,6 +6,7 @@ import { InternalComponent } from './internal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import {
+    NbAutocompleteModule,
     NbButtonGroupModule,
     NbButtonModule,
     NbCalendarModule,
@@ -65,6 +66,7 @@ FullCalendarModule.registerPlugins([
         NbSelectModule,
         ReactiveFormsModule,
         NgxCurrencyModule,
+        NbAutocompleteModule
     ],
     providers: [],
 })

@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import {
     NbAuthModule,
     NbAuthService,
@@ -42,6 +43,7 @@ registerLocaleData(localeDeAt);
         HttpClientModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
+        AngularFireStorageModule,
         NbAuthModule.forRoot({
             strategies: [
                 NbFirebasePasswordStrategy.setup({

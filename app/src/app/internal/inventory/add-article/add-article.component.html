@@ -48,7 +48,16 @@
                             "
                             placeholder="Default"
                             formControlName="brand"
+                            [nbAutocomplete]="brandAutoControl"
                         />
+
+                        <nb-autocomplete #brandAutoControl>
+
+                            <nb-option *ngFor="let option of filteredBrandValues | async" [value]="option">
+                              {{ option }}
+                            </nb-option>
+                      
+                          </nb-autocomplete>
                     </div>
                 </div>
 
@@ -70,7 +79,16 @@
                             "
                             placeholder="Default"
                             formControlName="manufacturer"
+                            [nbAutocomplete]="manufacturerAutoControl"
                         />
+
+                        <nb-autocomplete #manufacturerAutoControl>
+
+                            <nb-option *ngFor="let option of filteredManufacturerValues | async" [value]="option">
+                              {{ option }}
+                            </nb-option>
+                      
+                          </nb-autocomplete>
                     </div>
                 </div>
 
@@ -304,7 +322,7 @@
                             <div class="image-preview" tabindex="-1">
                                 <div>
                                     <img
-                                        *ngIf="tempBase64.length > 0"
+                                        *ngIf="tempBase64"
                                         [src]="tempBase64"
                                     />
 
