@@ -30,6 +30,7 @@ import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 import { AuthGuard } from './guards/auth-guard.service';
 import { State } from './models/state';
 import { ImageUploadModule } from './shared/image-upload/image-upload.module';
+import { AvatarModule } from 'ngx-avatar';
 registerLocaleData(localeDeAt);
 
 @NgModule({
@@ -56,6 +57,7 @@ registerLocaleData(localeDeAt);
             ],
             forms: {},
         }),
+        AvatarModule,
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-AT' },

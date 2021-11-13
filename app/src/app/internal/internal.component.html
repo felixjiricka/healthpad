@@ -3,13 +3,15 @@
         <div class="content">
             <div class="top">
                 <div class="user">
-                    <div class="image">
-                        <div class="uk-cover-container">
-                            <img
-                                src="../../assets/images/placeholder/avatar.jpg"
-                                uk-cover
-                            />
-                        </div>
+                    <div class="avatar">
+                        <ngx-avatar
+                            bgColor="#6c70d8"
+                            [name]="
+                                state.user?.firstName +
+                                ' ' +
+                                state.user?.lastName
+                            "
+                        ></ngx-avatar>
                     </div>
 
                     <div class="text">

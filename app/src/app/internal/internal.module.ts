@@ -30,6 +30,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
+import { AvatarModule } from 'ngx-avatar';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -69,6 +70,7 @@ FullCalendarModule.registerPlugins([
         NgxCurrencyModule,
         NbAutocompleteModule,
         ImageUploadModule,
+        AvatarModule,
     ],
     providers: [],
 })

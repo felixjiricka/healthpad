@@ -15,13 +15,18 @@ nb-layout {
                     div.user {
                         display: flex;
 
-                        > div.image {
-                            > div.uk-cover-container {
-                                width: 54px;
-                                height: 54px;
-                                border-radius: 17.5px;
-                            }
+                        > div.avatar {
+                            height: 48px;
+                            width: 48px;
+                            border-radius: 100%;
+                            background-color: #eee;
                             margin-right: 17.5px;
+                            display: flex;
+
+                            span {
+                                margin: auto;
+                                font-size: 17px;
+                            }
                         }
 
                         > div.text {
