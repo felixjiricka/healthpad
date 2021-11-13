@@ -21,6 +21,7 @@ export class AuthService {
     ) {
         this.afAuth.authState.subscribe(async (user) => {
             if (user) {
+                console.log(user);
                 this.firestore
                     .getUserData(user.uid)
                     .then((userData: User) => {
@@ -39,7 +40,7 @@ export class AuthService {
                         console.error('No user data stored');
                     });
             } else {
-                this.state.user = null;
+                delete this.state.user;
             }
         });
     }
@@ -51,7 +52,7 @@ export class AuthService {
             .then((data: NbAuthResult) => {
                 console.log(data);
 
-                this.state.user = null;
+                delete this.state.user;
                 this.router.navigateByUrl('/auth/login');
             })
             .catch((err) => {

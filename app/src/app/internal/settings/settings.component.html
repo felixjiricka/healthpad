@@ -1,0 +1,25 @@
+<div class="page-header">
+    <h1>Einstellungen</h1>
+
+    <div class="header-action-button"></div>
+</div>
+<div class="page-content">
+    <div class="uk-flex">
+        <div class="settings-nav uk-width-auto">
+            <ul class="uk-nav uk-nav-default">
+                <li routerLinkActive="uk-active" [routerLink]="'profile'">
+                    <a>Profil</a>
+                </li>
+
+                <li routerLinkActive="uk-active" [routerLink]="'products'">
+                    <a>Produkte</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="settings-content uk-width-expand">
+            <!-- user data: image, name, email, address etc -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

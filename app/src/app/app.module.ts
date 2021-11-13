@@ -17,7 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
+import {
+    AngularFireStorage,
+    AngularFireStorageModule,
+} from '@angular/fire/storage';
 import {
     NbAuthModule,
     NbAuthService,
@@ -26,6 +29,7 @@ import {
 import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 import { AuthGuard } from './guards/auth-guard.service';
 import { State } from './models/state';
+import { ImageUploadModule } from './shared/image-upload/image-upload.module';
 registerLocaleData(localeDeAt);
 
 @NgModule({

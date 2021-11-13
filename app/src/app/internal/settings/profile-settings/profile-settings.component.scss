@@ -1,0 +1,29 @@
+section {
+    &:not(:first-child) {
+        margin-top: 40px;
+    }
+
+    &:not(:last-child) {
+        border-bottom: 2px solid rgba(37, 37, 37, 0.05);
+        padding-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h5 {
+    }
+
+    label {
+        font-weight: 500;
+
+        ~ div.uk-form-controls {
+            margin-top: 10px;
+        }
+    }
+}
+app-image-upload {
+    max-width: 100px;
+    display: block;
+}

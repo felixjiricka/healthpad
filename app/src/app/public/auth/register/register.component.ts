@@ -37,14 +37,16 @@ export class RegisterComponent extends NbRegisterComponent {
 
                 if (result.isSuccess()) {
                     this.messages = result.getMessages();
+                    let res = result.getResponse();
 
-                    let uid = result.getResponse().user.uid;
+                    let uid = res.user.uid;
                     console.log(uid);
 
                     let user: User = {
                         uid: uid,
                         firstName: this.user.firstName,
                         lastName: this.user.lastName,
+                        email: res.user.email,
                         company: '',
                         address: {
                             country: '',

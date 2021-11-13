@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { State } from 'src/app/models/state';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { Observable, of } from 'rxjs';
 import { first, map, startWith } from 'rxjs/operators';
+import { ImageUploadComponent } from 'src/app/components/image-upload/image-upload.component';
 
 @Component({
     selector: 'app-product-form',
@@ -12,8 +13,8 @@ import { first, map, startWith } from 'rxjs/operators';
     styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
+    @ViewChild(ImageUploadComponent) imageForm!: ImageUploadComponent;
     form!: FormGroup;
-    tempBase64: any = null;
 
     autocompleteData: {
         brand: string[];
@@ -96,20 +97,10 @@ export class ProductFormComponent implements OnInit {
         );
     }
 
-    updatePreview(event: any) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            this.tempBase64 = reader.result;
-        };
-    }
-
     submit() {
         if (this.form.valid) {
-            console.log(this.tempBase64);
             this.firestoreService
-                .setProduct(this.form.value, this.tempBase64)
+                .setProduct(this.form.value, this.imageForm.getBase64())
                 .then((res) => {
                     console.log(res);
                     this.state.inventory.push(res);

@@ -7,6 +7,7 @@ import { UUID } from 'angular2-uuid';
 import { State } from 'src/app/models/state';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { first } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
     providedIn: 'root',
@@ -15,7 +16,8 @@ export class FirestoreService {
     constructor(
         private firestore: AngularFirestore,
         private state: State,
-        private firestorage: AngularFireStorage
+        private firestorage: AngularFireStorage,
+        private afAuth: AngularFireAuth
     ) {}
 
     setUserData(user: User) {
@@ -37,9 +39,11 @@ export class FirestoreService {
                 .collection('users')
                 .doc(uid)
                 .ref.get()
-                .then(function (doc) {
+                .then(async (doc) => {
                     if (doc.exists) {
                         var userData = doc.data() as User;
+                        userData.email =
+                            (await this.afAuth.currentUser)!.email || '';
                         console.log('User data: ', userData);
                         resolve(userData);
                     } else {

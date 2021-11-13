@@ -1,0 +1,60 @@
+<form [formGroup]="profileForm">
+    <section>
+        <div class="uk-margin">
+            <div class="uk-grid">
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">Vorname</label>
+                    <div class="uk-form-controls">
+                        <input
+                            nbInput
+                            fullWidth
+                            type="text"
+                            placeholder="Vorname"
+                            formControlName="firstName"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">Nachname</label>
+                    <div class="uk-form-controls">
+                        <input
+                            nbInput
+                            fullWidth
+                            type="text"
+                            placeholder="Nachname"
+                            formControlName="lastName"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="uk-margin">
+            <div class="uk-grid">
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">E-Mail</label>
+                    <div class="uk-form-controls">
+                        <input
+                            nbInput
+                            fullWidth
+                            type="text"
+                            placeholder="max.mustermann@web.at"
+                            formControlName="email"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="uk-margin">
+            <button nbButton status="primary" (click)="submit()">
+                Speichern
+            </button>
+        </div>
+    </section>
+</form>

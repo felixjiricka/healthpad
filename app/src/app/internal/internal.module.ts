@@ -29,6 +29,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
+import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -66,7 +67,8 @@ FullCalendarModule.registerPlugins([
         NbSelectModule,
         ReactiveFormsModule,
         NgxCurrencyModule,
-        NbAutocompleteModule
+        NbAutocompleteModule,
+        ImageUploadModule,
     ],
     providers: [],
 })

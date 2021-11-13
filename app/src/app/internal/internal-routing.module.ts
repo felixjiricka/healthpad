@@ -6,6 +6,7 @@ import { InternalComponent } from './internal.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
     {
@@ -46,6 +47,13 @@ const routes: Routes = [
             {
                 path: 'clients',
                 component: ClientsComponent,
+            },
+            {
+                path: 'settings',
+                loadChildren: () =>
+                    import('./settings/settings.module').then(
+                        (m) => m.SettingsModule
+                    ),
             },
         ],
     },

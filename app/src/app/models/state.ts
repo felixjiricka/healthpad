@@ -4,6 +4,6 @@ import { User } from './user';
 
 @Injectable()
 export class State {
-    user!: User | null;
+    user?: User;
     inventory: Product[] = [];
 }

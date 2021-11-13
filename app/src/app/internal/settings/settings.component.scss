@@ -1,0 +1,33 @@
+div.page-content {
+    max-width: 1200px;
+    > div {
+        margin-top: 40px;
+        width: 100%;
+
+        > div.settings-nav {
+            margin-right: 75px;
+            border-right: 2px solid rgba(37, 37, 37, 0.05);
+
+            ul {
+                min-width: 180px;
+                margin-right: 25px;
+
+                li {
+                    margin-bottom: 10px;
+                    padding: 6px 15.5px;
+                    font-size: 18px;
+                    border-radius: 7.5px;
+
+                    &.uk-active {
+                        background-color: rgb(108 112 216 / 15%);
+                    }
+                    &:hover {
+                    }
+                }
+            }
+        }
+
+        > div.settings-content {
+        }
+    }
+}
