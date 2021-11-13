@@ -10,7 +10,7 @@
 
 <div class="page-content">
     <div class="uk-grid-large" uk-grid [formGroup]="form">
-        <div class="uk-width-1-1">
+        <div class="uk-width-1-4">
             <div class="uk-margin">
                 <div class="uk-margin">
                     <div class="uk-form-controls">
@@ -76,8 +76,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="uk-width-1-1 uk-form-stacked">
+
+        <div class="uk-width-3-4 uk-form-stacked">
             <div class="uk-margin">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text"
@@ -123,12 +123,15 @@
                         />
 
                         <nb-autocomplete #brandAutoControl>
-
-                            <nb-option *ngFor="let option of filteredBrandValues | async" [value]="option">
-                              {{ option }}
+                            <nb-option
+                                *ngFor="
+                                    let option of filteredBrandValues | async
+                                "
+                                [value]="option"
+                            >
+                                {{ option }}
                             </nb-option>
-                      
-                          </nb-autocomplete>
+                        </nb-autocomplete>
                     </div>
                 </div>
 
@@ -154,12 +157,16 @@
                         />
 
                         <nb-autocomplete #manufacturerAutoControl>
-
-                            <nb-option *ngFor="let option of filteredManufacturerValues | async" [value]="option">
-                              {{ option }}
+                            <nb-option
+                                *ngFor="
+                                    let option of filteredManufacturerValues
+                                        | async
+                                "
+                                [value]="option"
+                            >
+                                {{ option }}
                             </nb-option>
-                      
-                          </nb-autocomplete>
+                        </nb-autocomplete>
                     </div>
                 </div>
 

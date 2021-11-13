@@ -27,7 +27,7 @@ const routes: Routes = [
             },
             {
                 path: 'inventory/new',
-                component: InventoryComponent,
+                component: ProductFormComponent,
             },
             /*
             {

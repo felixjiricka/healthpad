@@ -12,24 +12,18 @@ import { NbSidebarComponent, NbSidebarService } from '@nebular/theme';
     styleUrls: ['./inventory.component.scss'],
 })
 export class InventoryComponent implements OnInit, AfterViewInit {
-    @ViewChild(NbSidebarComponent, {static: false}) sidebar!: NbSidebarComponent;
     filterForm!: FormGroup;
-    constructor(private state: State, private fb: FormBuilder, private route: ActivatedRoute) {}
+    constructor(
+        private state: State,
+        private fb: FormBuilder,
+        private route: ActivatedRoute
+    ) {}
 
-    ngAfterViewInit() {
-        this.route.url.subscribe(params => {
-            console.log(params);
-            if(params[1] && params[1].path == 'new') {
-                this.sidebar.toggle(false);
-            } else {
-                this.sidebar.collapse();
-            }
-        })
-    }
+    ngAfterViewInit() {}
 
     ngOnInit(): void {
         // set brands
-        console.log(this.state.inventory)
+        console.log(this.state.inventory);
         this.productBrands = [
             ...new Set(this.state.inventory.map((el) => el.brand)),
         ];
@@ -63,12 +57,11 @@ export class InventoryComponent implements OnInit, AfterViewInit {
                     )
                     .filter((v: any) => v !== null);
 
-            appliedFilters.productBrands =
-                this.filterForm.value.productBrands
-                    .map((checked: any, i: any) =>
-                        checked ? this.productBrands[i] : null
-                    )
-                    .filter((v: any) => v !== null);
+            appliedFilters.productBrands = this.filterForm.value.productBrands
+                .map((checked: any, i: any) =>
+                    checked ? this.productBrands[i] : null
+                )
+                .filter((v: any) => v !== null);
 
             console.log(appliedFilters);
 
@@ -133,9 +126,5 @@ export class InventoryComponent implements OnInit, AfterViewInit {
                 .toLowerCase()
                 .startsWith(this.searchValue.toLowerCase());
         });
-    }
-
-    collapseSidebar() {
-        this.sidebar.collapse();
     }
 }
