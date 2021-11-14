@@ -22,23 +22,6 @@ export class AuthService {
         this.afAuth.authState.subscribe(async (user) => {
             if (user) {
                 console.log(user);
-                this.firestore
-                    .getUserData(user.uid)
-                    .then((userData: User) => {
-                        this.state.user = userData;
-
-                        this.firestore
-                            .getProducts()
-                            .then((inventory: Product[]) => {
-                                this.state.inventory = inventory;
-                            })
-                            .catch((error) => {
-                                console.error('No user data stored');
-                            });
-                    })
-                    .catch((error) => {
-                        console.error('No user data stored');
-                    });
             } else {
                 delete this.state.user;
             }

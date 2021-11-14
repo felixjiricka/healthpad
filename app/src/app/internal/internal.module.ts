@@ -31,6 +31,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 import { AvatarModule } from 'ngx-avatar';
+import { ProductDetailedComponent } from './inventory/product-detailed/product-detailed.component';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -47,6 +48,7 @@ FullCalendarModule.registerPlugins([
         ClientsComponent,
         CalendarComponent,
         ProductFormComponent,
+        ProductDetailedComponent,
     ],
     imports: [
         CommonModule,

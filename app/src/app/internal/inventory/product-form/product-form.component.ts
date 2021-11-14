@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { State } from 'src/app/models/state';
@@ -6,13 +6,19 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { Observable, of } from 'rxjs';
 import { first, map, startWith } from 'rxjs/operators';
 import { ImageUploadComponent } from 'src/app/components/image-upload/image-upload.component';
-
+import { Product } from 'src/app/models/product';
+import { isEqual } from 'lodash';
+import { Location } from '@angular/common';
 @Component({
     selector: 'app-product-form',
     templateUrl: './product-form.component.html',
     styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, AfterViewInit {
+    editMode: boolean = false;
+    editProduct!: Product;
+    initValues: any;
+
     @ViewChild(ImageUploadComponent) imageForm!: ImageUploadComponent;
     form!: FormGroup;
 
@@ -32,8 +38,32 @@ export class ProductFormComponent implements OnInit {
         private firestoreService: FirestoreService,
         private router: Router,
         private state: State,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private location: Location
     ) {}
+
+    ngAfterViewInit(): void {
+        // check for edit mode
+        this.route.params.pipe(first()).subscribe((params) => {
+            if (params.hasOwnProperty('id')) {
+                this.editMode = true;
+
+                let temp = this.state.inventory.find(
+                    (prod) => prod.id == params['id']
+                );
+
+                if (typeof temp !== 'undefined') {
+                    this.editProduct = temp;
+                    this.form.patchValue(temp);
+                    this.initValues = this.form.value;
+                    this.imageForm.patchValue(temp.image);
+                } else {
+                    console.error('No product with given id found');
+                    this.router.navigate(['/inventory']);
+                }
+            }
+        });
+    }
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -84,10 +114,6 @@ export class ProductFormComponent implements OnInit {
                     )
                 )
             );
-
-        this.route.params.pipe(first()).subscribe((params) => {
-            console.log(params);
-        });
     }
 
     private filter(value: string, options: string[]): string[] {
@@ -99,20 +125,49 @@ export class ProductFormComponent implements OnInit {
 
     submit() {
         if (this.form.valid) {
+            if (this.editMode) {
+                if (!isEqual(this.initValues, this.form.value)) {
+                    this.editProduct = {
+                        id: this.editProduct.id,
+                        image: this.editProduct.image,
+                        ...this.form.value,
+                    };
+
+                    this.writeData(this.editProduct);
+                } else if (typeof this.imageForm.getFile() !== 'undefined') {
+                    this.writeData(this.editProduct);
+                }
+            } else {
+                this.writeData(this.form.value);
+            }
+        }
+    }
+
+    writeData(data: any) {
+        this.firestoreService
+            .setProduct(data, this.imageForm.getFile())
+            .then((res) => {
+                this.location.back();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    removeProduct() {
+        if (this.editMode) {
             this.firestoreService
-                .setProduct(this.form.value, this.imageForm.getBase64())
-                .then((res) => {
-                    console.log(res);
-                    this.state.inventory.push(res);
+                .removeProduct(this.editProduct.id)
+                .then((data) => {
                     this.router.navigate(['/inventory']);
                 })
-                .catch((error) => {
-                    console.error(error);
+                .catch((err) => {
+                    console.error(err);
                 });
         }
     }
 
     cancelAction() {
-        this.router.navigate(['/inventory']);
+        this.location.back();
     }
 }

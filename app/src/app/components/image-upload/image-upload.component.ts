@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NbDialogService } from '@nebular/theme';
+import { first } from 'rxjs/operators';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 
 @Component({
     selector: 'app-image-upload',
@@ -6,22 +10,41 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./image-upload.component.scss'],
 })
 export class ImageUploadComponent implements OnInit {
-    tempBase64: any = null;
-
-    constructor() {}
+    previewImage: any;
+    croppedImage: any;
+    constructor(
+        private dialogService: NbDialogService,
+        private _sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit(): void {}
 
-    updatePreview(event: any) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            this.tempBase64 = reader.result;
-        };
+    updatePreview(ev: any) {
+        const file = ev.target.files[0];
+
+        this.dialogService
+            .open(ImageCropperComponent, {
+                context: {
+                    event: ev,
+                },
+                hasBackdrop: false,
+            })
+            .onClose.pipe(first())
+            .subscribe((res) => {
+                if (res) {
+                    this.croppedImage = res;
+                    this.previewImage = this._sanitizer.bypassSecurityTrustUrl(
+                        window.URL.createObjectURL(res)
+                    );
+                }
+            });
     }
 
-    getBase64() {
-        return this.tempBase64;
+    getFile() {
+        return this.croppedImage;
+    }
+
+    patchValue(value: any) {
+        this.previewImage = value;
     }
 }

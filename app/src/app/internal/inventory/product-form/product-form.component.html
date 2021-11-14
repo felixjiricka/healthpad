@@ -1,7 +1,23 @@
 <div class="page-header">
-    <h1>Artikel hinzufügen</h1>
+    <ng-container *ngIf="!editMode">
+        <h1>Artikel hinzufügen</h1>
+    </ng-container>
+
+    <ng-container *ngIf="editMode">
+        <h1>Artikel bearbeiten</h1>
+    </ng-container>
 
     <div class="header-action-button">
+        <ng-container *ngIf="editMode">
+            <button
+                nbButton
+                status="danger"
+                (click)="removeProduct()"
+                class="uk-margin-medium-right"
+            >
+                Löschen
+            </button>
+        </ng-container>
         <button nbButton>
             <nb-icon icon="close-outline" (click)="cancelAction()"></nb-icon>
         </button>

@@ -23,7 +23,6 @@ export class InventoryComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
         // set brands
-        console.log(this.state.inventory);
         this.productBrands = [
             ...new Set(this.state.inventory.map((el) => el.brand)),
         ];

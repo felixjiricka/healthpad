@@ -1,3 +1,4 @@
+import { ProductDetailedComponent } from './inventory/product-detailed/product-detailed.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,12 +7,15 @@ import { InternalComponent } from './internal.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
-import { SettingsComponent } from './settings/settings.component';
+import { DataResolverService } from '../resolvers/data-resolver.service';
 
 const routes: Routes = [
     {
         path: '',
         component: InternalComponent,
+        resolve: {
+            posts: DataResolverService,
+        },
         children: [
             {
                 path: '',
@@ -30,16 +34,14 @@ const routes: Routes = [
                 path: 'inventory/new',
                 component: ProductFormComponent,
             },
-            /*
             {
                 path: 'inventory/:id',
-                component: DetailedProductComponent,
+                component: ProductDetailedComponent,
             },
             {
                 path: 'inventory/:id/edit',
                 component: ProductFormComponent,
             },
-            */
             {
                 path: 'calendar',
                 component: CalendarComponent,

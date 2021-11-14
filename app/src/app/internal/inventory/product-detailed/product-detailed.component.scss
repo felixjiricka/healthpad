@@ -1,0 +1,189 @@
+div.page-header {
+    margin-bottom: 40px;
+}
+
+div.page-content {
+    max-width: 1350px;
+
+    > div.container {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 30em 1fr 1fr;
+        grid-template-rows: 0.5fr 30em 1fr 1fr 1fr;
+        gap: 20px 20px;
+        grid-template-areas:
+            "product-info product-info product-info"
+            "product-image product-description product-description"
+            "product-inventory product-activity product-activity"
+            "product-financial product-activity product-activity"
+            "product-usage product-activity product-activity";
+        .product-info {
+            grid-area: product-info;
+            > div.uk-flex {
+                height: 100%;
+
+                > div {
+                    //brand
+                    &:nth-child(1) {
+                        .icon-container {
+                            background-color: rgb(100 176 197 / 20%);
+
+                            svg * {
+                                stroke: rgb(100, 176, 197);
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .icon-container {
+                            background-color: rgb(108 112 216 / 20%);
+
+                            svg * {
+                                stroke: rgb(108 112 216);
+                            }
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        .icon-container {
+                            background-color: rgb(96 157 137 / 20%);
+
+                            svg * {
+                                stroke: rgb(96 157 137);
+                            }
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        .icon-container {
+                            background-color: rgb(234 66 96 / 20%);
+
+                            svg * {
+                                stroke: rgb(234, 66, 96);
+                            }
+                        }
+                    }
+
+                    > div.uk-width-expand {
+                    }
+                }
+            }
+        }
+
+        .product-image {
+            grid-area: product-image;
+            overflow: hidden;
+            position: relative;
+
+            > div.uk-cover-container {
+                margin: 25px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        .product-description {
+            grid-area: product-description;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            > div.content {
+                div {
+                    white-space: pre-line;
+                }
+            }
+        }
+
+        .product-activity {
+            grid-area: product-activity;
+        }
+
+        .product-inventory {
+            grid-area: product-inventory;
+
+            > div.uk-flex {
+                > div {
+                    &:nth-child(1) {
+                        .icon-container {
+                            background-color: rgb(100 176 197 / 20%);
+
+                            svg * {
+                                stroke: rgb(100, 176, 197);
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .icon-container {
+                            background-color: rgb(234 66 96 / 20%);
+
+                            svg * {
+                                stroke: rgb(234, 66, 96);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-financial {
+            grid-area: product-financial;
+
+            > div.uk-flex {
+                > div {
+                    &:nth-child(1) {
+                        .icon-container {
+                            background-color: rgb(234 66 96 / 20%);
+
+                            svg * {
+                                stroke: rgb(234, 66, 96);
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .icon-container {
+                            background-color: rgb(96 157 137 / 20%);
+
+                            svg * {
+                                stroke: rgb(96 157 137);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-usage {
+            grid-area: product-usage;
+        }
+
+        > div {
+            padding: 25px;
+            background-color: white;
+            border-radius: 12.5px;
+        }
+    }
+}
+
+div.icon-container {
+    height: 100%;
+    padding: 12.5px;
+    border-radius: 12.5px;
+    margin-right: 15px;
+    max-height: 60px;
+}
+
+div.info-container {
+    label {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    span {
+        font-size: 15px;
+    }
+}

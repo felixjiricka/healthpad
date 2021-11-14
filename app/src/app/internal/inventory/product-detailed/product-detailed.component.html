@@ -1,0 +1,740 @@
+<div class="uk-flex uk-flex-column uk-height-1-1">
+    <div class="page-header">
+        <div class="">
+            <h1 class="small">{{ activeProduct.name }}</h1>
+        </div>
+
+        <div class="header-action-button">
+            <button nbButton status="primary" routerLink="edit">
+                <nb-icon icon="edit-outline"></nb-icon>Bearbeiten
+            </button>
+        </div>
+    </div>
+
+    <div class="page-content uk-flex-1">
+        <div class="container">
+            <div class="product-info">
+                <div class="uk-flex">
+                    <div class="uk-width-1-4 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-actions-library">
+                                        <rect
+                                            class="cls-1"
+                                            x="4.42"
+                                            y="2.24"
+                                            width="16"
+                                            height="20"
+                                            rx="2"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M9.42,6.24v2c0,.55.33,1,.75,1h4.5c.41,0,.75-.45.75-1v-2"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="4.42"
+                                            y1="12.24"
+                                            x2="20.42"
+                                            y2="12.24"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M9.42,16v2c0,.55.33,1,.75,1h4.5c.41,0,.75-.45.75-1V16"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    uk-margin-auto
+                                    info-container
+                                "
+                            >
+                                <label>Kategorie</label>
+                                <span>{{
+                                    activeProduct.category
+                                        ? activeProduct.category
+                                        : "-"
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-4 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-construction-hammer">
+                                        <rect
+                                            class="cls-1"
+                                            x="3.9"
+                                            y="4.83"
+                                            width="16"
+                                            height="6"
+                                            rx="2"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M13.9,10.83v9.9a1.84,1.84,0,0,1-2,1.65h0a1.85,1.85,0,0,1-2-1.65v-9.9"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M10.49,4.83V3.65A1.37,1.37,0,0,1,11.9,2.32h0a1.37,1.37,0,0,1,1.41,1.33V4.83"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Hersteller</label>
+                                <span>{{
+                                    activeProduct.manufacturer
+                                        ? activeProduct.manufacturer
+                                        : "-"
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1,
+                                            .cls-2 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                            .cls-2 {
+                                                fill-rule: evenodd;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-real-estate-flat">
+                                        <path
+                                            class="cls-1"
+                                            d="M4,2h8a2,2,0,0,1,2,2V22a0,0,0,0,1,0,0H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2Z"
+                                        />
+                                        <path
+                                            class="cls-2"
+                                            d="M14,10h6a2,2,0,0,1,2,2v8a2,2,0,0,1-2,2H14"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="5"
+                                            y1="6"
+                                            x2="6"
+                                            y2="6"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="9"
+                                            y1="6"
+                                            x2="11"
+                                            y2="6"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="5"
+                                            y1="10"
+                                            x2="6"
+                                            y2="10"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="9"
+                                            y1="10"
+                                            x2="11"
+                                            y2="10"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="5"
+                                            y1="14"
+                                            x2="6"
+                                            y2="14"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="9"
+                                            y1="14"
+                                            x2="11"
+                                            y2="14"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="5"
+                                            y1="18"
+                                            x2="6"
+                                            y2="18"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="9"
+                                            y1="18"
+                                            x2="11"
+                                            y2="18"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="17"
+                                            y1="14"
+                                            x2="19"
+                                            y2="14"
+                                        />
+                                        <line
+                                            class="cls-1"
+                                            x1="17"
+                                            y1="18"
+                                            x2="19"
+                                            y2="18"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    uk-margin-auto
+                                    info-container
+                                "
+                            >
+                                <label>Marke</label>
+                                <span>{{
+                                    activeProduct.brand
+                                        ? activeProduct.brand
+                                        : "-"
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1,
+                                            .cls-2 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                            .cls-1 {
+                                                fill-rule: evenodd;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-shopping-code">
+                                        <path
+                                            class="cls-1"
+                                            d="M7,5H3.16A.16.16,0,0,0,3,5.16V9"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M21,9V5.16A.16.16,0,0,0,20.84,5H17"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M17,19h3.84a.16.16,0,0,0,.16-.16V15"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M3,15v3.84a.16.16,0,0,0,.16.16H7"
+                                        />
+                                        <line
+                                            class="cls-2"
+                                            x1="7"
+                                            y1="9"
+                                            x2="7"
+                                            y2="15"
+                                        />
+                                        <line
+                                            class="cls-2"
+                                            x1="12"
+                                            y1="9"
+                                            x2="12"
+                                            y2="15"
+                                        />
+                                        <line
+                                            class="cls-2"
+                                            x1="17"
+                                            y1="9"
+                                            x2="17"
+                                            y2="15"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    uk-margin-auto
+                                    info-container
+                                "
+                            >
+                                <label>EAN</label>
+                                <span>{{
+                                    activeProduct.ean ? activeProduct.ean : "-"
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-image">
+                <div class="uk-cover-container">
+                    <img [src]="activeProduct.image" uk-cover />
+                </div>
+            </div>
+
+            <div class="product-description">
+                <div class="header">
+                    <h5>Beschreibung</h5>
+                </div>
+
+                <div class="content">
+                    <div>
+                        {{ activeProduct.description }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-activity">
+                <div class="header">
+                    <h5>Aktivitäten</h5>
+                </div>
+
+                <div class="content">
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="product-inventory">
+                <div class="uk-flex uk-height-1-1">
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-shopping-bag">
+                                        <path
+                                            class="cls-1"
+                                            d="M19.47,21H4.53a2,2,0,0,1-1.94-2.46L5,8.54A2,2,0,0,1,6.91,7H17.09A2,2,0,0,1,19,8.54l2.38,10A2,2,0,0,1,19.47,21Z"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M7.56,7l.9-1.82A4,4,0,0,1,12,3h0a4,4,0,0,1,3.54,2.18L16.44,7"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Aktuell Lagernd</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.current
+                                            ? activeProduct.inventory.current
+                                            : 0
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: bevel;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-actions-danger-simple">
+                                        <rect
+                                            class="cls-1"
+                                            x="11"
+                                            y="3.67"
+                                            width="2"
+                                            height="12"
+                                            rx="1"
+                                        />
+                                        <rect
+                                            class="cls-1"
+                                            x="10.67"
+                                            y="18.33"
+                                            width="2.67"
+                                            height="2.67"
+                                            rx="1.33"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Kritisch ab</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.critical
+                                            ? activeProduct.inventory.critical
+                                            : 5
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-financial">
+                <div class="uk-flex uk-height-1-1">
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-shopping-bag">
+                                        <path
+                                            class="cls-1"
+                                            d="M19.47,21H4.53a2,2,0,0,1-1.94-2.46L5,8.54A2,2,0,0,1,6.91,7H17.09A2,2,0,0,1,19,8.54l2.38,10A2,2,0,0,1,19.47,21Z"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M7.56,7l.9-1.82A4,4,0,0,1,12,3h0a4,4,0,0,1,3.54,2.18L16.44,7"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Einkaufspreis</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.current
+                                            ? activeProduct.inventory.current
+                                            : 0
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: bevel;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-actions-danger-simple">
+                                        <rect
+                                            class="cls-1"
+                                            x="11"
+                                            y="3.67"
+                                            width="2"
+                                            height="12"
+                                            rx="1"
+                                        />
+                                        <rect
+                                            class="cls-1"
+                                            x="10.67"
+                                            y="18.33"
+                                            width="2.67"
+                                            height="2.67"
+                                            rx="1.33"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Verkaufspreis</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.critical
+                                            ? activeProduct.inventory.critical
+                                            : 5
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-usage">
+                <div class="uk-flex uk-height-1-1">
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-shopping-bag">
+                                        <path
+                                            class="cls-1"
+                                            d="M19.47,21H4.53a2,2,0,0,1-1.94-2.46L5,8.54A2,2,0,0,1,6.91,7H17.09A2,2,0,0,1,19,8.54l2.38,10A2,2,0,0,1,19.47,21Z"
+                                        />
+                                        <path
+                                            class="cls-1"
+                                            d="M7.56,7l.9-1.82A4,4,0,0,1,12,3h0a4,4,0,0,1,3.54,2.18L16.44,7"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Verkäufe</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.current
+                                            ? activeProduct.inventory.current
+                                            : 0
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2 uk-flex">
+                        <div class="uk-width-auto uk-flex">
+                            <div class="icon-container uk-margin-auto-vertical">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #000;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: bevel;
+                                                stroke-width: 1.5px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <g id="ic-actions-danger-simple">
+                                        <rect
+                                            class="cls-1"
+                                            x="11"
+                                            y="3.67"
+                                            width="2"
+                                            height="12"
+                                            rx="1"
+                                        />
+                                        <rect
+                                            class="cls-1"
+                                            x="10.67"
+                                            y="18.33"
+                                            width="2.67"
+                                            height="2.67"
+                                            rx="1.33"
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand uk-flex">
+                            <div
+                                class="
+                                    uk-flex
+                                    uk-flex-column
+                                    uk-margin-auto-vertical
+                                    info-container
+                                "
+                            >
+                                <label>Insgesamt verkauft</label>
+                                <span
+                                    >{{
+                                        activeProduct.inventory.critical
+                                            ? activeProduct.inventory.critical
+                                            : 5
+                                    }}
+                                    St.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

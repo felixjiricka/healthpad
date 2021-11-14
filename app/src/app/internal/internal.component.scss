@@ -2,7 +2,7 @@
 
 nb-layout {
     nb-sidebar {
-        background-color: rgba(217, 187, 160, 0.1);
+        background-color: white;
 
         div.content {
             display: flex;
@@ -91,7 +91,7 @@ nb-layout {
         padding: 45px !important;
 
         &.content {
-            background-color: #fcfcfc;
+            background-color: rgb(247 249 252 / 60%);
         }
     }
 }

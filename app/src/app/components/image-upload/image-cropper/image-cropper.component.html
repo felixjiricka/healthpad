@@ -1,0 +1,31 @@
+<nb-template>
+    <nb-card>
+        <nb-card-header>
+            <div class="uk-flex uk-width-1-1">
+                <label>Bild zuschneiden</label>
+
+                <button nbButton (click)="dismiss()">
+                    <nb-icon icon="close-outline"></nb-icon>
+                </button>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <image-cropper
+                [imageChangedEvent]="event"
+                [maintainAspectRatio]="true"
+                [containWithinAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="primary" (click)="saveAndClose()">
+                Speichern
+            </button>
+        </nb-card-footer>
+    </nb-card>
+</nb-template>

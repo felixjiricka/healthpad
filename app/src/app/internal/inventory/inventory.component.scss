@@ -72,7 +72,7 @@ div.page-content {
         nb-card {
             padding: 25px;
             border-radius: 10px;
-            background-color: rgba(229, 229, 228, 0.2);
+            background-color: white;
 
             div.image {
                 height: 100%;
@@ -139,10 +139,10 @@ div.page-content {
     }
 }
 
-nb-sidebar.form-bar.expanded, nb-sidebar.form-bar::ng-deep .main-container-fixed {
+nb-sidebar.form-bar.expanded,
+nb-sidebar.form-bar::ng-deep .main-container-fixed {
     width: 37.5vw;
 }
 
 nb-sidebar.form-bar.expanded::ng-deep .main-container-fixed {
-
 }

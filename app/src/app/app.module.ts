@@ -6,6 +6,7 @@ import {
     NbThemeModule,
     NbLayoutModule,
     NbSidebarModule,
+    NbDialogModule,
 } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,19 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import {
-    AngularFireStorage,
-    AngularFireStorageModule,
-} from '@angular/fire/storage';
-import {
-    NbAuthModule,
-    NbAuthService,
-    NbPasswordAuthStrategy,
-} from '@nebular/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { NbAuthModule } from '@nebular/auth';
 import { NbFirebasePasswordStrategy } from '@nebular/firebase-auth';
 import { AuthGuard } from './guards/auth-guard.service';
 import { State } from './models/state';
-import { ImageUploadModule } from './shared/image-upload/image-upload.module';
 import { AvatarModule } from 'ngx-avatar';
 registerLocaleData(localeDeAt);
 
@@ -58,6 +51,7 @@ registerLocaleData(localeDeAt);
             forms: {},
         }),
         AvatarModule,
+        NbDialogModule.forRoot(),
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-AT' },

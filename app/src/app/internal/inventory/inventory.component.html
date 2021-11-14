@@ -99,7 +99,10 @@
             "
             uk-grid
         >
-            <div *ngFor="let product of filteredProducts">
+            <div
+                *ngFor="let product of filteredProducts"
+                [routerLink]="product.id"
+            >
                 <nb-card>
                     <div class="image">
                         <div class="uk-cover-container">
