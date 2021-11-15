@@ -26,24 +26,14 @@ export class DataResolverService implements Resolve<any> {
             this.afAuth.authState.pipe(first()).subscribe(async (user) => {
                 if (user) {
                     this.firestore
-                        .getUserData(user.uid)
-                        .then((userData: User) => {
-                            this.state.user = userData;
-
-                            this.firestore
-                                .getProducts()
-                                .then((inventory: Product[]) => {
-                                    this.state.inventory = inventory;
-                                    resolve(this.state);
-                                })
-                                .catch((error) => {
-                                    console.error('No user data stored');
-                                    reject(error);
-                                });
+                        .initUser(user)
+                        .then((data) => {
+                            console.log(data);
+                            resolve(true);
                         })
-                        .catch((error) => {
-                            console.error('No user data stored');
-                            reject(error);
+                        .catch((err) => {
+                            console.log(err);
+                            reject(err);
                         });
                 } else {
                     reject({

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Client } from './client';
 import { Product } from './product';
 import { User } from './user';
 
@@ -6,4 +7,5 @@ import { User } from './user';
 export class State {
     user?: User;
     inventory: Product[] = [];
+    clients: Client[] = [];
 }

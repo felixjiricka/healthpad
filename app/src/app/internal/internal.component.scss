@@ -88,6 +88,8 @@ nb-layout {
     }
 
     nb-layout-column {
+        height: 100vh;
+        overflow-y: auto;
         padding: 45px !important;
 
         &.content {

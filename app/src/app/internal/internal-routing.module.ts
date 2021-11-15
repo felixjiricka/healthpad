@@ -8,6 +8,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
 import { DataResolverService } from '../resolvers/data-resolver.service';
+import { ClientFormComponent } from './clients/client-form/client-form.component';
 
 const routes: Routes = [
     {
@@ -19,8 +20,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/dashboard',
-                pathMatch: 'full',
+                component: DashboardComponent,
             },
             {
                 path: 'dashboard',
@@ -49,6 +49,10 @@ const routes: Routes = [
             {
                 path: 'clients',
                 component: ClientsComponent,
+            },
+            {
+                path: 'clients/new',
+                component: ClientFormComponent,
             },
             {
                 path: 'settings',

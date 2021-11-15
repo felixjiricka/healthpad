@@ -1,13 +1,17 @@
 import { BaseModel } from './base';
 
 export class Client extends BaseModel {
-    id!: number;
+    id!: string;
     name!: {
         first: string;
         sur: string;
     };
-    birthdate!: string;
-    adress!: {
+    birthdate!: any;
+    contact!: {
+        tel: string;
+        mail: string;
+    };
+    address!: {
         street: string;
         number: number;
         additional: string;

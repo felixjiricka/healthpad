@@ -13,6 +13,7 @@ import {
     NbCalendarRangeModule,
     NbCardModule,
     NbCheckboxModule,
+    NbDatepickerModule,
     NbFormFieldModule,
     NbIconModule,
     NbInputModule,
@@ -32,6 +33,7 @@ import { ProductFormComponent } from './inventory/product-form/product-form.comp
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 import { AvatarModule } from 'ngx-avatar';
 import { ProductDetailedComponent } from './inventory/product-detailed/product-detailed.component';
+import { ClientFormComponent } from './clients/client-form/client-form.component';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -49,6 +51,7 @@ FullCalendarModule.registerPlugins([
         CalendarComponent,
         ProductFormComponent,
         ProductDetailedComponent,
+        ClientFormComponent,
     ],
     imports: [
         CommonModule,
@@ -73,6 +76,7 @@ FullCalendarModule.registerPlugins([
         NbAutocompleteModule,
         ImageUploadModule,
         AvatarModule,
+        NbDatepickerModule,
     ],
     providers: [],
 })

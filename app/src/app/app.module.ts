@@ -7,6 +7,7 @@ import {
     NbLayoutModule,
     NbSidebarModule,
     NbDialogModule,
+    NbDatepickerModule,
 } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +53,7 @@ registerLocaleData(localeDeAt);
         }),
         AvatarModule,
         NbDialogModule.forRoot(),
+        NbDatepickerModule.forRoot(),
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-AT' },

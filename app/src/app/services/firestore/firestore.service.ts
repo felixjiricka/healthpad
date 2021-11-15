@@ -12,6 +12,12 @@ import {
 import { first } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Client } from 'src/app/models/client';
+
+enum ImageFolder {
+    PRODUCT = 'products',
+    CLIENT = 'clients',
+}
 
 @Injectable({
     providedIn: 'root',
@@ -23,6 +29,29 @@ export class FirestoreService {
         private firestorage: AngularFireStorage,
         private afAuth: AngularFireAuth
     ) {}
+
+    initUser(fireUser: any) {
+        return new Promise((resolve, reject) => {
+            this.getUserData(fireUser.uid)
+                .then((data) => {
+                    console.log(data);
+                    this.state.user = data;
+
+                    Promise.all([this.getProducts(), this.getClients()])
+                        .then((res) => {
+                            this.state.inventory = res[0];
+                            this.state.clients = res[1];
+                            resolve(this.state);
+                        })
+                        .catch((err) => {
+                            reject(err);
+                        });
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+    }
 
     setUserData(user: User) {
         return new Promise(async (resolve, reject) => {
@@ -72,24 +101,34 @@ export class FirestoreService {
                 }
 
                 // handle product image upload
-                this.setProductImage(file, prod.id).then(async (link) => {
-                    if (link !== null) prod.image = link as string;
+                this.storeImage(file, prod.id, ImageFolder.PRODUCT).then(
+                    async (link) => {
+                        if (link !== null) prod.image = link as string;
 
-                    let userProductRef = this.firestore
-                        .collection('products')
-                        .doc(this.state.user?.uid);
+                        let userProductRef = this.firestore
+                            .collection('products')
+                            .doc(this.state.user?.uid);
 
-                    await userProductRef.update({ [prod.id]: prod });
+                        let docSnapshot = await userProductRef
+                            .get()
+                            .toPromise();
 
-                    // check if need to push
-                    this.state.inventory = this.state.inventory.filter(
-                        (prd) => prd.id !== prod.id
-                    );
+                        if (docSnapshot.exists) {
+                            await userProductRef.update({ [prod.id]: prod });
+                        } else {
+                            await userProductRef.set({ [prod.id]: prod });
+                        }
 
-                    this.state.inventory.push(prod);
+                        // check if need to push
+                        this.state.inventory = this.state.inventory.filter(
+                            (prd) => prd.id !== prod.id
+                        );
 
-                    resolve(prod);
-                });
+                        this.state.inventory.push(prod);
+
+                        resolve(prod);
+                    }
+                );
 
                 // handle image upload
             } catch (error) {
@@ -98,60 +137,10 @@ export class FirestoreService {
         });
     }
 
-    // set product image
-    async setProductImage(file: AngularFireUploadTask, id: string) {
-        return new Promise((resolve, reject) => {
-            let path = `${this.state.user?.uid}/products/${id}`;
-
-            if (!file || typeof file === 'undefined') {
-                resolve(null);
-                return;
-            } else {
-                this.firestorage
-                    .ref(path)
-                    .put(file)
-                    .then((val) => {
-                        // get url once
-                        this.firestorage
-                            .ref(path)
-                            .getDownloadURL()
-                            .pipe(first())
-                            .subscribe((link) => {
-                                resolve(link);
-                            });
-                    })
-                    .catch((err) => {
-                        console.error('err in setProductImage', err);
-                        resolve(err);
-                    });
-            }
-        });
-    }
-
-    // remove product image
-    removeProductImage(id: string) {
-        return new Promise((resolve, reject) => {
-            let path = `${this.state.user?.uid}/products/${id}`;
-
-            this.firestorage
-                .ref(path)
-                .getDownloadURL()
-                .toPromise()
-                .then((res) => {
-                    this.firestorage
-                        .ref(path)
-                        .delete()
-                        .pipe(first())
-                        .subscribe((res) => resolve(res));
-                })
-                .catch((err) => resolve({}));
-        });
-    }
-
     // remove product
     removeProduct(id: string) {
         return new Promise((resolve, reject) => {
-            this.removeProductImage(id).then((res) => {
+            this.removeImage(id, ImageFolder.PRODUCT).then((res) => {
                 this.firestore
                     .collection('products')
                     .doc(this.state.user?.uid)
@@ -185,6 +174,155 @@ export class FirestoreService {
                         reject();
                     }
                 });
+        });
+    }
+
+    // general methods to add or remove image
+    // set product image
+    async storeImage(
+        file: AngularFireUploadTask,
+        id: string,
+        folder: ImageFolder
+    ) {
+        return new Promise((resolve, reject) => {
+            let path = `${this.state.user?.uid}/${folder}/${id}`;
+
+            if (!file || typeof file === 'undefined') {
+                resolve(null);
+                return;
+            } else {
+                this.firestorage
+                    .ref(path)
+                    .put(file)
+                    .then((val) => {
+                        // get url once
+                        this.firestorage
+                            .ref(path)
+                            .getDownloadURL()
+                            .pipe(first())
+                            .subscribe((link) => {
+                                resolve(link);
+                            });
+                    })
+                    .catch((err) => {
+                        console.error('err in setProductImage', err);
+                        resolve(err);
+                    });
+            }
+        });
+    }
+
+    // remove product image
+    removeImage(id: string, folder: ImageFolder) {
+        return new Promise((resolve, reject) => {
+            let path = `${this.state.user?.uid}/${folder}/${id}`;
+
+            this.firestorage
+                .ref(path)
+                .getDownloadURL()
+                .toPromise()
+                .then((res) => {
+                    this.firestorage
+                        .ref(path)
+                        .delete()
+                        .pipe(first())
+                        .subscribe((res) => resolve(res));
+                })
+                .catch((err) => resolve({}));
+        });
+    }
+
+    // set users
+    async setClient(
+        client: Client,
+        file: AngularFireUploadTask
+    ): Promise<Client> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                // check if update product or save new
+                if (!client.id) {
+                    let id = UUID.UUID();
+                    client.id = id;
+                }
+
+                // handle product image upload
+                this.storeImage(file, client.id, ImageFolder.CLIENT).then(
+                    async (link) => {
+                        if (link !== null) client.image = link as string;
+
+                        let userClientsRef = this.firestore
+                            .collection('clients')
+                            .doc(this.state.user?.uid);
+
+                        let docSnapshot = await userClientsRef
+                            .get()
+                            .toPromise();
+
+                        if (docSnapshot.exists) {
+                            await userClientsRef.update({
+                                [client.id]: client,
+                            });
+                        } else {
+                            await userClientsRef.set({
+                                [client.id]: client,
+                            });
+                        }
+
+                        // check if need to push
+                        this.state.clients = this.state.clients.filter(
+                            (cli) => cli.id !== client.id
+                        );
+
+                        this.state.clients.push(client);
+
+                        resolve(client);
+                    }
+                );
+
+                // handle image upload
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+
+    removeClient(id: string) {
+        return new Promise((resolve, reject) => {
+            this.removeImage(id, ImageFolder.CLIENT).then((res) => {
+                this.firestore
+                    .collection('clients')
+                    .doc(this.state.user?.uid)
+                    .update({
+                        [id]: firebase.default.firestore.FieldValue.delete(),
+                    })
+                    .then((res) => {
+                        this.state.clients = this.state.clients.filter(
+                            (cli) => cli.id !== id
+                        );
+                        resolve(res);
+                    })
+                    .catch((err) => reject(err));
+            });
+        });
+    }
+
+    // get all products
+    async getClients(): Promise<Client[]> {
+        return new Promise(async (resolve, reject) => {
+            this.firestore
+                .collection('clients')
+                .doc(this.state.user?.uid)
+                .ref.get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        var clients = doc.data() as { string: Client };
+                        resolve(Object.values(clients));
+                    } else {
+                        console.error('No matching clients found');
+                        resolve([]);
+                    }
+                })
+                .catch((err) => reject(err));
         });
     }
 }

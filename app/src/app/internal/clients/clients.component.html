@@ -2,7 +2,7 @@
     <h1>Klienten</h1>
 
     <div class="header-action-button">
-        <button nbButton status="primary">
+        <button nbButton status="primary" routerLink="new">
             <nb-icon icon="plus-outline"></nb-icon>Klient hinzufügen
         </button>
     </div>
@@ -41,12 +41,20 @@
             <tbody>
                 <tr *ngFor="let client of filteredClients">
                     <td>
-                        <div class="uk-cover-container">
-                            <img
-                                src="https://placeimg.com/480/480/people"
-                                uk-cover
-                            />
-                        </div>
+                        <ng-container *ngIf="client.image">
+                            <div class="uk-cover-container">
+                                <img [src]="client.image" uk-cover />
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="!client.image">
+                            <ngx-avatar
+                                bgColor="#6c70d8"
+                                [name]="
+                                    client.name.first + ' ' + client.name.sur
+                                "
+                            ></ngx-avatar>
+                        </ng-container>
                     </td>
                     <td class="stacked">
                         <span
@@ -55,11 +63,11 @@
                         <span class="text-hint"> #{{ client.id }} </span>
                     </td>
                     <td>
-                        <span>{{ client.adress.city }}</span>
+                        <span>{{ client.address.city }}</span>
                     </td>
                     <td>
                         <span>{{
-                            client.birthdate | date: "dd MMMM, yyyy"
+                            client.birthdate.toDate() | date: "dd MMMM, yyyy"
                         }}</span>
                     </td>
                     <td>-</td>

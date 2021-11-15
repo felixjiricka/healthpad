@@ -1,0 +1,224 @@
+<div class="page-header">
+    <ng-container *ngIf="!editMode">
+        <h1>Klient hinzufügen</h1>
+    </ng-container>
+
+    <ng-container *ngIf="editMode">
+        <h1>Klient bearbeiten</h1>
+    </ng-container>
+
+    <div class="header-action-button">
+        <ng-container *ngIf="editMode">
+            <button nbButton status="danger" class="uk-margin-medium-right">
+                Löschen
+            </button>
+        </ng-container>
+        <button nbButton (click)="cancelAction()">
+            <nb-icon icon="close-outline"></nb-icon>
+        </button>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="uk-grid-large" uk-grid [formGroup]="form">
+        <div class="uk-width-1-4">
+            <div class="uk-margin">
+                <div class="uk-margin">
+                    <div class="uk-form-controls">
+                        <app-image-upload></app-image-upload>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-width-3-4 uk-form-stacked">
+            <div class="uk-margin-medium" uk-grid>
+                <div class="uk-width-1-2" formGroupName="name">
+                    <label class="uk-form-label">Vorname</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="Max"
+                            formControlName="first"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-2" formGroupName="name">
+                    <label class="uk-form-label">Nachname</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="Mustermann"
+                            formControlName="sur"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">Geburtsdatum</label>
+                    <div class="uk-form-controls">
+                        <input
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="04.02.2001"
+                            formControlName="birthdate"
+                            [nbDatepicker]="datepicker"
+                        />
+                        <nb-datepicker
+                            #datepicker
+                            format="dd.MM.yyyy"
+                        ></nb-datepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-large" uk-grid formGroupName="contact">
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">Telefonnummer</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="tel"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="06761234567"
+                            formControlName="tel"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">E-Mail</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="email"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="max.mustermann@gmx.at"
+                            formControlName="mail"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-large" uk-grid formGroupName="address">
+                <div class="uk-width-1-2">
+                    <label class="uk-form-label">Straße</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="tel"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="Hauptstraße"
+                            formControlName="street"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-4">
+                    <label class="uk-form-label">Hausnummer</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="110"
+                            formControlName="number"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-4">
+                    <label class="uk-form-label">Adresszusatz</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="1/1"
+                            formControlName="additional"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-3-4">
+                    <label class="uk-form-label">Ort</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="Eisenstadt"
+                            formControlName="city"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-1-4">
+                    <label class="uk-form-label">Postleitzahl</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="7000"
+                            formControlName="postal"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium" uk-grid>
+                <div class="uk-width-1-1">
+                    <label class="uk-form-label">Krankenakte</label>
+                    <div class="uk-form-controls">
+                        <textarea
+                            rows="4"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder=""
+                            formControlName="medicalHistory"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="uk-width-1-1">
+                    <label class="uk-form-label">Zusätzliche Notizen</label>
+                    <div class="uk-form-controls">
+                        <textarea
+                            rows="4"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder=""
+                            formControlName="notes"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium">
+                <div class="uk-margin">
+                    <button nbButton status="primary" (click)="submit()">
+                        Speichern
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
