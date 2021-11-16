@@ -55,6 +55,10 @@ const routes: Routes = [
                 component: ClientFormComponent,
             },
             {
+                path: 'clients/:id/edit',
+                component: ClientFormComponent,
+            },
+            {
                 path: 'settings',
                 loadChildren: () =>
                     import('./settings/settings.module').then(

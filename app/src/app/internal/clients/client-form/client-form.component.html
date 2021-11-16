@@ -8,7 +8,7 @@
     </ng-container>
 
     <div class="header-action-button">
-        <ng-container *ngIf="editMode">
+        <ng-container *ngIf="editMode" (click)="removeClient()">
             <button nbButton status="danger" class="uk-margin-medium-right">
                 Löschen
             </button>
@@ -153,20 +153,6 @@
                     </div>
                 </div>
 
-                <div class="uk-width-3-4">
-                    <label class="uk-form-label">Ort</label>
-                    <div class="uk-form-controls">
-                        <input
-                            type="text"
-                            nbInput
-                            fullWidth
-                            [status]="'basic'"
-                            placeholder="Eisenstadt"
-                            formControlName="city"
-                        />
-                    </div>
-                </div>
-
                 <div class="uk-width-1-4">
                     <label class="uk-form-label">Postleitzahl</label>
                     <div class="uk-form-controls">
@@ -177,6 +163,20 @@
                             [status]="'basic'"
                             placeholder="7000"
                             formControlName="postal"
+                        />
+                    </div>
+                </div>
+
+                <div class="uk-width-3-4">
+                    <label class="uk-form-label">Ort</label>
+                    <div class="uk-form-controls">
+                        <input
+                            type="text"
+                            nbInput
+                            fullWidth
+                            [status]="'basic'"
+                            placeholder="Eisenstadt"
+                            formControlName="city"
                         />
                     </div>
                 </div>

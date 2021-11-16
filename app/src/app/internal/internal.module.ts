@@ -34,6 +34,8 @@ import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 import { AvatarModule } from 'ngx-avatar';
 import { ProductDetailedComponent } from './inventory/product-detailed/product-detailed.component';
 import { ClientFormComponent } from './clients/client-form/client-form.component';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { de } from 'date-fns/locale';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -77,6 +79,10 @@ FullCalendarModule.registerPlugins([
         ImageUploadModule,
         AvatarModule,
         NbDatepickerModule,
+        NbDateFnsDateModule.forRoot({
+            parseOptions: { locale: de, format: 'dd.MM.yyy' },
+            formatOptions: { locale: de, format: 'dd.MM.yyy' },
+        }),
     ],
     providers: [],
 })

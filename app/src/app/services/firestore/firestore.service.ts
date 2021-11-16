@@ -185,9 +185,11 @@ export class FirestoreService {
         folder: ImageFolder
     ) {
         return new Promise((resolve, reject) => {
+            console.log(file, id, folder);
             let path = `${this.state.user?.uid}/${folder}/${id}`;
 
-            if (!file || typeof file === 'undefined') {
+            if (!file || typeof file == 'undefined') {
+                console.log('undefined');
                 resolve(null);
                 return;
             } else {
@@ -249,6 +251,7 @@ export class FirestoreService {
                 this.storeImage(file, client.id, ImageFolder.CLIENT).then(
                     async (link) => {
                         if (link !== null) client.image = link as string;
+                        else client.image = '';
 
                         let userClientsRef = this.firestore
                             .collection('clients')
@@ -288,21 +291,23 @@ export class FirestoreService {
 
     removeClient(id: string) {
         return new Promise((resolve, reject) => {
-            this.removeImage(id, ImageFolder.CLIENT).then((res) => {
-                this.firestore
-                    .collection('clients')
-                    .doc(this.state.user?.uid)
-                    .update({
-                        [id]: firebase.default.firestore.FieldValue.delete(),
-                    })
-                    .then((res) => {
-                        this.state.clients = this.state.clients.filter(
-                            (cli) => cli.id !== id
-                        );
-                        resolve(res);
-                    })
-                    .catch((err) => reject(err));
-            });
+            this.removeImage(id, ImageFolder.CLIENT)
+                .then((res) => {
+                    this.firestore
+                        .collection('clients')
+                        .doc(this.state.user?.uid)
+                        .update({
+                            [id]: firebase.default.firestore.FieldValue.delete(),
+                        })
+                        .then((res) => {
+                            this.state.clients = this.state.clients.filter(
+                                (cli) => cli.id !== id
+                            );
+                            resolve(res);
+                        })
+                        .catch((err) => reject(err));
+                })
+                .catch((err) => reject(err));
         });
     }
 
@@ -316,7 +321,12 @@ export class FirestoreService {
                 .then(function (doc) {
                     if (doc.exists) {
                         var clients = doc.data() as { string: Client };
-                        resolve(Object.values(clients));
+                        let data = Object.values(clients).map((el) => {
+                            el.birthdate = el.birthdate.toDate();
+                            return el;
+                        });
+
+                        resolve(data);
                     } else {
                         console.error('No matching clients found');
                         resolve([]);

@@ -27,7 +27,9 @@
     </div>
 
     <div class="client-list">
-        <table class="uk-table uk-table-divider uk-table-justify">
+        <table
+            class="uk-table uk-table-divider uk-table-justify uk-table-hover"
+        >
             <thead>
                 <tr>
                     <th class="uk-table-shrink"></th>
@@ -67,7 +69,7 @@
                     </td>
                     <td>
                         <span>{{
-                            client.birthdate.toDate() | date: "dd MMMM, yyyy"
+                            client.birthdate | date: "dd MMMM, yyyy"
                         }}</span>
                     </td>
                     <td>-</td>
