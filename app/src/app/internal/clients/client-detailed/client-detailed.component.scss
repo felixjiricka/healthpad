@@ -1,0 +1,30 @@
+div.page-header {
+    margin-bottom: 40px;
+}
+
+div.page-content {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 10em 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 20px 20px;
+        grid-template-areas:
+            "client-info client-info tab-menu tab-menu tab-menu tab-menu"
+            "client-info client-info content content content content"
+            "client-info client-info content content content content"
+            "client-info client-info content content content content"
+            "client-info client-info content content content content"
+            "client-info client-info content content content content"
+            "client-info client-info content content content content";
+    }
+    .client-info {
+        grid-area: client-info;
+    }
+    .tab-menu {
+        grid-area: tab-menu;
+    }
+    .content {
+        grid-area: content;
+    }
+}

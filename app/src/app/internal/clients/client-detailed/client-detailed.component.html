@@ -1,0 +1,23 @@
+<div class="uk-flex uk-flex-column uk-height-1-1">
+    <div class="page-header">
+        <div class="">
+            <h1 class="small">
+                {{ activeClient.name.first }} {{ activeClient.name.sur }}
+            </h1>
+        </div>
+
+        <div class="header-action-button">
+            <button nbButton status="primary" routerLink="edit">
+                <nb-icon icon="edit-outline"></nb-icon>Bearbeiten
+            </button>
+        </div>
+    </div>
+
+    <div class="page-content uk-flex-1">
+        <div class="container-">
+            <div class="client-info"></div>
+            <div class="tab-menu"></div>
+            <div class="content"></div>
+        </div>
+    </div>
+</div>

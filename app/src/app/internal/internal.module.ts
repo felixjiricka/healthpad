@@ -36,6 +36,7 @@ import { ProductDetailedComponent } from './inventory/product-detailed/product-d
 import { ClientFormComponent } from './clients/client-form/client-form.component';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { de } from 'date-fns/locale';
+import { ClientDetailedComponent } from './clients/client-detailed/client-detailed.component';
 
 FullCalendarModule.registerPlugins([
     // register FullCalendar plugins
@@ -54,6 +55,7 @@ FullCalendarModule.registerPlugins([
         ProductFormComponent,
         ProductDetailedComponent,
         ClientFormComponent,
+        ClientDetailedComponent,
     ],
     imports: [
         CommonModule,

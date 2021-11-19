@@ -9,6 +9,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ProductFormComponent } from './inventory/product-form/product-form.component';
 import { DataResolverService } from '../resolvers/data-resolver.service';
 import { ClientFormComponent } from './clients/client-form/client-form.component';
+import { ClientDetailedComponent } from './clients/client-detailed/client-detailed.component';
 
 const routes: Routes = [
     {
@@ -53,6 +54,10 @@ const routes: Routes = [
             {
                 path: 'clients/new',
                 component: ClientFormComponent,
+            },
+            {
+                path: 'clients/:id',
+                component: ClientDetailedComponent,
             },
             {
                 path: 'clients/:id/edit',
