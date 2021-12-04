@@ -32,7 +32,6 @@ registerLocaleData(localeDeAt);
     imports: [
         BrowserModule,
         AppRoutingModule,
-        NbThemeModule.forRoot(),
         NbEvaIconsModule,
         NbButtonModule,
         BrowserAnimationsModule,
